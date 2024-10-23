@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -18,6 +19,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
+
     public function index(): View
     {
         return view('auth.login', [
@@ -34,10 +36,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $this->logActivity('Logged in', $request->user());
+        $description = 'Pengguna ' . $request->user()->name . ' login dari ' . $request->ip();
+        $this->logActivity('login', $request->user(), null, $description);
 
 
-        return redirect()->intended(route('dashboard', absolute: false))->with('success', 'You have been logged in.');
+        return redirect()->intended(route('dashboard.index', absolute: false))->with('success', 'Login berhasil.');
     }
 
     /**

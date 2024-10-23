@@ -10,14 +10,16 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable(); // If activity can be related to a user
+            $table->unsignedBigInteger('user_id'); // If activity can be related to a user
+            $table->unsignedBigInteger('key_id')->nullable();
+            $table->string('action'); // Action taken
             $table->string('description'); // Description of the activity
             $table->string('ip_address')->nullable();
             $table->string('user_agent')->nullable();
             $table->timestamps();
 
             // Add foreign key constraint if necessary
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

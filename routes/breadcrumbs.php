@@ -6,19 +6,24 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 // Dashboard
 Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
-    $trail->push('Dashboard', route('dashboard'));
+    $trail->push('Dashboard', route('dashboard.index'));
 });
 
 // Dashboard > Profile
 Breadcrumbs::for('profile', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
-    $trail->push('Profile', route('profile.index'));
+    $trail->push('Profile', route('profiles.index'));
+});
+
+Breadcrumbs::for('letters', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Letter');
 });
 
 // Dashboard > Profile > Edit
 Breadcrumbs::for('edit profile', function (BreadcrumbTrail $trail) {
     $trail->parent('profile');
-    $trail->push('Edit', route('profile.edit'));
+    $trail->push('Edit');
 });
 
 // Dashboard > User

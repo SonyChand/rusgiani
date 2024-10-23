@@ -6,8 +6,8 @@
 
                 <li class="nav-item">
                     <div class="nav-item-wrapper"><a
-                            class="nav-link {{ request()->is('dashboard') ? 'active' : '' }} label-1"
-                            href="{{ route('dashboard') }}" role="button" data-bs-toggle="" aria-expanded="false">
+                            class="nav-link {{ request()->routeIs('dashboard.*') ? 'active' : '' }} label-1"
+                            href="{{ route('dashboard.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
                             <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                         data-feather="pie-chart"></span></span><span class="nav-link-text-wrapper"><span
                                         class="nav-link-text">Dashboard</span></span>
@@ -20,24 +20,24 @@
                         <div class="nav-item-wrapper">
                             <a class="nav-link dropdown-indicator label-1 {{ request()->routeIs('users.*') ? '' : 'collapsed' }}"
                                 href="#nv-user" role="button" data-bs-toggle="collapse"
-                                aria-expanded="{{ request()->is('kintil/*') ? 'true' : 'false' }}" aria-controls="nv-user">
+                                aria-expanded="{{ request()->is('panel/*') ? 'true' : 'false' }}" aria-controls="nv-user">
                                 <div class="d-flex align-items-center">
                                     <div class="dropdown-indicator-icon-wrapper"><span
                                             class="fas fa-caret-right dropdown-indicator-icon"></span></div><span
                                         class="nav-link-icon"><span data-feather="users"></span></span><span
-                                        class="nav-link-text">Users</span>
+                                        class="nav-link-text">Pengguna</span>
                                 </div>
                             </a>
                             <div class="parent-wrapper label-1">
                                 <ul class="nav collapse parent {{ request()->routeIs('users.*') ? 'show' : '' }}"
                                     data-bs-parent="#navbarVerticalCollapse" id="nv-user">
-                                    <li class="collapsed-nav-item-title d-none">Users
+                                    <li class="collapsed-nav-item-title d-none">Pengguna
                                     </li>
                                     <li class="nav-item"><a
                                             class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}"
                                             href="{{ route('users.index') }}">
                                             <div class="d-flex align-items-center"><span class="nav-link-text">
-                                                    List Users
+                                                    Master Pengguna
                                                 </span>
                                             </div>
                                         </a>
@@ -46,8 +46,8 @@
                                         <li class="nav-item">
                                             <a class="nav-link {{ request()->routeIs('users.create') ? 'active' : '' }}"
                                                 href="{{ route('users.create') }}">
-                                                <div class="d-flex align-items-center"><span class="nav-link-text">Add
-                                                        User</span>
+                                                <div class="d-flex align-items-center"><span class="nav-link-text">Tambah
+                                                        Pengguna</span>
                                                 </div>
                                             </a>
                                         </li>
@@ -60,23 +60,23 @@
                         <div class="nav-item-wrapper">
                             <a class="nav-link dropdown-indicator label-1 {{ request()->routeIs('roles.*') ? '' : 'collapsed' }}"
                                 href="#nv-role" role="button" data-bs-toggle="collapse"
-                                aria-expanded="{{ request()->is('kintil/*') ? 'true' : 'false' }}" aria-controls="nv-role">
+                                aria-expanded="{{ request()->is('panel/*') ? 'true' : 'false' }}" aria-controls="nv-role">
                                 <div class="d-flex align-items-center">
                                     <div class="dropdown-indicator-icon-wrapper"><span
                                             class="fas fa-caret-right dropdown-indicator-icon"></span></div>
                                     <span class="nav-link-icon"><span data-feather="lock"></span></span>
-                                    <span class="nav-link-text">Roles</span>
+                                    <span class="nav-link-text">Role</span>
                                 </div>
                             </a>
                             <div class="parent-wrapper label-1">
                                 <ul class="nav collapse parent {{ request()->routeIs('roles.*') ? 'show' : '' }}"
                                     data-bs-parent="#navbarVerticalCollapse" id="nv-role">
-                                    <li class="collapsed-nav-item-title d-none">Roles</li>
+                                    <li class="collapsed-nav-item-title d-none">Role</li>
                                     <li class="nav-item">
                                         <a class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}"
                                             href="{{ route('roles.index') }}">
-                                            <div class="d-flex align-items-center"><span class="nav-link-text">List
-                                                    Roles</span></div>
+                                            <div class="d-flex align-items-center"><span class="nav-link-text">Master
+                                                    Role</span></div>
                                         </a>
                                     </li>
 
@@ -84,7 +84,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link {{ request()->routeIs('roles.create') ? 'active' : '' }}"
                                                 href="{{ route('roles.create') }}">
-                                                <div class="d-flex align-items-center"><span class="nav-link-text">Add
+                                                <div class="d-flex align-items-center"><span class="nav-link-text">Tambah
                                                         Role</span></div>
                                             </a>
                                         </li>
@@ -94,37 +94,93 @@
                         </div>
                     @endcanany
 
+                    <div class="nav-item-wrapper"><a
+                            class="nav-link dropdown-indicator {{ request()->routeIs('incoming-letters.*') ? '' : 'collapsed' }} label-1"
+                            href="#nv-components" role="button" data-bs-toggle="collapse" aria-expanded="true"
+                            aria-controls="nv-components">
+                            <div class="d-flex align-items-center">
+                                <div class="dropdown-indicator-icon-wrapper"><span
+                                        class="fas fa-caret-right dropdown-indicator-icon"></span></div><span
+                                    class="nav-link-icon"><span data-feather="package"></span></span><span
+                                    class="nav-link-text">Manajemen <span
+                                        class="badge ms-2 badge badge-phoenix badge-phoenix-warning ">Demo</span></span>
+                            </div>
+                        </a>
+                        <div class="parent-wrapper label-1">
+                            <ul class="nav collapse parent {{ request()->routeIs('incoming-letters.*') ? 'show' : '' }}"
+                                data-bs-parent="#navbarVerticalCollapse" id="nv-components">
+                                <li class="collapsed-nav-item-title d-none">Manajemen <span
+                                        class="badge ms-2 badge badge-phoenix badge-phoenix-warning ">Demo</span>
+                                </li>
+                                <li class="nav-item"><a
+                                        class="nav-link dropdown-indicator {{ request()->routeIs('incoming-letters.*') ? '' : 'collapsed' }}"
+                                        href="#nv-carousel" data-bs-toggle="collapse" aria-expanded="true"
+                                        aria-controls="nv-carousel">
+                                        <div class="d-flex align-items-center">
+                                            <div class="dropdown-indicator-icon-wrapper"><span
+                                                    class="fas fa-caret-right dropdown-indicator-icon"></span></div>
+                                            <span class="nav-link-text">Surat <span
+                                                    class="badge ms-2 badge badge-phoenix badge-phoenix-warning ">Demo</span></span>
+                                        </div>
+                                    </a>
+                                    <!-- more inner pages-->
+                                    <div class="parent-wrapper">
+                                        <ul class="nav collapse parent {{ request()->routeIs('incoming-letters.*') ? 'show' : '' }}"
+                                            data-bs-parent="#components" id="nv-carousel">
+                                            <li class="nav-item">
+                                                <a class="nav-link {{ request()->routeIs('incoming-letters.*') ? 'active' : '' }}"
+                                                    href="{{ route('incoming-letters.index') }}">
+                                                    <div class="d-flex align-items-center"><span
+                                                            class="nav-link-text">Surat Masuk</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link {{ request()->routeIs('outgoing-letters.*') ? 'active' : '' }}"
+                                                    href="{{ route('incoming-letters.index') }}">
+                                                    <div class="d-flex align-items-center"><span
+                                                            class="nav-link-text">Surat Keluar</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
 
                     <!-- parent pages-->
                     <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1 {{ request()->routeIs('profile.*') ? '' : 'collapsed' }}"
+                        <a class="nav-link dropdown-indicator label-1 {{ request()->routeIs('profiles.*') ? '' : 'collapsed' }}"
                             href="#nv-profile" role="button" data-bs-toggle="collapse"
-                            aria-expanded="{{ request()->is('kintil/*') ? 'true' : 'false' }}"
+                            aria-expanded="{{ request()->is('panel/*') ? 'true' : 'false' }}"
                             aria-controls="nv-profile">
                             <div class="d-flex align-items-center">
                                 <div class="dropdown-indicator-icon-wrapper"><span
                                         class="fas fa-caret-right dropdown-indicator-icon"></span></div><span
                                     class="nav-link-icon"><span data-feather="user"></span></span><span
-                                    class="nav-link-text">Account</span>
+                                    class="nav-link-text">Akun</span>
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent {{ request()->routeIs('profile.*') ? 'show' : '' }}"
+                            <ul class="nav collapse parent {{ request()->routeIs('profiles.*') ? 'show' : '' }}"
                                 data-bs-parent="#navbarVerticalCollapse" id="nv-profile">
-                                <li class="collapsed-nav-item-title d-none">Account
+                                <li class="collapsed-nav-item-title d-none">Akun
                                 </li>
                                 <li class="nav-item"><a
-                                        class="nav-link {{ request()->routeIs('profile.index') ? 'active' : '' }}"
-                                        href="{{ route('profile.index') }}">
+                                        class="nav-link {{ request()->routeIs('profiles.index') ? 'active' : '' }}"
+                                        href="{{ route('profiles.index') }}">
                                         <div class="d-flex align-items-center"><span
-                                                class="nav-link-text">Profile</span>
+                                                class="nav-link-text">Profil</span>
                                         </div>
                                     </a>
                                 </li>
                                 <li class="nav-item"><a
-                                        class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }}"
-                                        href="{{ route('profile.edit') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text">Edit
+                                        class="nav-link {{ request()->routeIs('profiles.edit') ? 'active' : '' }}"
+                                        href="{{ route('profiles.edit', Auth::user()->id) }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text">Ubah
                                                 Profile</span>
                                         </div>
                                     </a>

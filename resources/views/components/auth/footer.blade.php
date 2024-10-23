@@ -57,15 +57,6 @@
             </div>
             <p class="mb-0 text-body-tertiary">Change text direction</p>
         </div>
-        <div class="border border-translucent rounded-3 p-4 setting-panel-item bg-body-emphasis">
-            <div class="d-flex justify-content-between align-items-center">
-                <h5 class="setting-panel-item-title mb-1">Support Chat </h5>
-                <div class="form-check form-switch mb-0">
-                    <input class="form-check-input ms-auto" type="checkbox" data-theme-control="phoenixSupportChat" />
-                </div>
-            </div>
-            <p class="mb-0 text-body-tertiary">Toggle support chat</p>
-        </div>
         <div class="setting-panel-item">
             <h5 class="setting-panel-item-title">Navigation Type</h5>
             <div class="row gx-2">
@@ -299,16 +290,13 @@
         }
     }
 
-    function hideLoader() {
-        document.getElementById('loader').style.display = 'none';
-    }
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector("body").style.visibility = "hidden";
+        document.querySelector("#loader").style.display = "block";
+    });
 
-    // Initial page load script (same as before)
     document.onreadystatechange = function() {
-        if (document.readyState !== "complete") {
-            document.querySelector("body").style.visibility = "hidden";
-            document.querySelector("#loader").style.visibility = "visible";
-        } else {
+        if (document.readyState === "complete") {
             document.querySelector("#loader").style.display = "none";
             document.querySelector("body").style.visibility = "visible";
             toastr.options = {
@@ -328,9 +316,12 @@
             @if (session('success'))
                 toastr.success("{{ session('success') }}");
             @endif
-
         }
     };
+
+    function hideLoader() {
+        document.getElementById('loader').style.display = 'none';
+    }
 </script>
 
 </body>

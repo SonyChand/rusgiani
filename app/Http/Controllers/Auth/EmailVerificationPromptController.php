@@ -21,7 +21,7 @@ class EmailVerificationPromptController extends Controller
             $request->session()->put('email_verified_logged', true);
         }
         return $request->user()->hasVerifiedEmail()
-            ? redirect()->intended(route('dashboard', absolute: false))->with('success', 'Your email has been verified.')
+            ? redirect()->intended(route('dashboard.index', absolute: false))->with('success', 'Your email has been verified.')
             : view('auth.verify-email', [
                 'title' => 'Verify Email',
             ]);

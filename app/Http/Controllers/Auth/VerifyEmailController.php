@@ -17,7 +17,7 @@ class VerifyEmailController extends Controller
     public function __invoke(EmailVerificationRequest $request): RedirectResponse
     {
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(route('dashboard', absolute: false) . '?verified=1')->with('success', 'Email already verified.');
+            return redirect()->intended(route('dashboard.index', absolute: false) . '?verified=1')->with('success', 'Email already verified.');
         }
 
         if ($request->user()->markEmailAsVerified() && !$request->session()->has('email_verified_logged')) {
@@ -26,6 +26,6 @@ class VerifyEmailController extends Controller
             $request->session()->put('email_verified_logged', true);
         }
 
-        return redirect()->intended(route('dashboard', absolute: false) . '?verified=1')->with('success', 'Email verified successfully.');
+        return redirect()->intended(route('dashboard.index', absolute: false) . '?verified=1')->with('success', 'Email verified successfully.');
     }
 }

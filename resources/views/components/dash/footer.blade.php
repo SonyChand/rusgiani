@@ -286,16 +286,6 @@
             </div>
             <p class="mb-0 text-body-tertiary">Change text direction</p>
         </div>
-        <div class="border border-translucent rounded-3 p-4 setting-panel-item bg-body-emphasis">
-            <div class="d-flex justify-content-between align-items-center">
-                <h5 class="setting-panel-item-title mb-1">Support Chat </h5>
-                <div class="form-check form-switch mb-0">
-                    <input class="form-check-input ms-auto" type="checkbox"
-                        data-theme-control="phoenixSupportChat" />
-                </div>
-            </div>
-            <p class="mb-0 text-body-tertiary">Toggle support chat</p>
-        </div>
         <div class="setting-panel-item">
             <h5 class="setting-panel-item-title">Vertical Navbar Appearance</h5>
             <div class="row gx-2">
@@ -363,7 +353,7 @@
                                     fill="#2A7BE4"></path>
                             </svg></span></span></span></div>
         </div><small
-            class="d-print-none text-uppercase text-body-tertiary fw-bold py-2 pe-2 ps-1 rounded-end">customize</small>
+            class="d-print-none text-uppercase text-body-tertiary fw-bold py-2 pe-2 ps-1 rounded-end">CUSTOM</small>
     </div>
 </a>
 
@@ -385,6 +375,8 @@
 <script src="{{ asset('assets') }}/assets/js/phoenix.js"></script>
 <script src="{{ asset('assets') }}/vendors/choices/choices.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/flatpickr/flatpickr.min.js"></script>
+<script src="{{ asset('assets') }}/vendors/tinymce/tinymce.min.js"></script>
+<script src="{{ asset('assets') }}/vendors/dropzone/dropzone-min.js"></script>
 
 
 <div id="loader" data-wordLoad="{{ config('app.name', 'Sistem') }}">
@@ -434,8 +426,8 @@
     // Initial page load script (same as before)
     document.onreadystatechange = function() {
         if (document.readyState !== "complete") {
-            document.querySelector("body").style.visibility = "hidden";
-            document.querySelector("#loader").style.visibility = "visible";
+            // document.querySelector("body").style.visibility = "hidden";
+            // document.querySelector("#loader").style.visibility = "visible";
         } else {
             document.querySelector("#loader").style.display = "none";
             document.querySelector("body").style.visibility = "visible";
@@ -455,6 +447,18 @@
 
             @if (session('success'))
                 toastr.success("{{ session('success') }}");
+            @endif
+
+            @if (session('info'))
+                toastr.info("{{ session('info') }}");
+            @endif
+
+            @if (session('warning'))
+                toastr.warning("{{ session('warning') }}");
+            @endif
+
+            @if (session('error'))
+                toastr.error("{{ session('error') }}");
             @endif
 
         }

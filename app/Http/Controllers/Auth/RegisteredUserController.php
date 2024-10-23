@@ -54,8 +54,8 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         // Send login notification email
-        Mail::to('sonychandcareer@gmail.com')->send(new RegisterNotification($request->user()));
+        Mail::to('sonychandmaulana@gmail.com')->send(new RegisterNotification($request->user()));
 
-        return redirect(route('dashboard', absolute: false))->with('success', 'You have been registered.');
+        return redirect(route('dashboard.index', absolute: false))->with('success', 'You have been registered.');
     }
 }

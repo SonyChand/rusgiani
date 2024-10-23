@@ -52,6 +52,7 @@
     <link href="{{ asset('assets') }}/assets/css/user.min.css" type="text/css" rel="stylesheet"
         id="user-style-default">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@latest/build/toastr.min.css">
+    <link href="{{ asset('assets') }}/vendors/dropzone/dropzone.css" rel="stylesheet" />
     <script>
         var phoenixIsRTL = window.config.config.phoenixIsRTL;
         if (phoenixIsRTL) {
@@ -186,6 +187,8 @@
                 -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, .2));
                 font-size: 20px;
             }
+
+
         }
     </style>
 

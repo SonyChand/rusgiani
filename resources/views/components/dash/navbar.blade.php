@@ -407,13 +407,14 @@
                         <div class="overflow-auto scrollbar" style="height: 10rem;">
                             <ul class="nav d-flex flex-column mb-2 pb-1">
                                 <li class="nav-item"><a
-                                        class="nav-link {{ request()->routeIs('profile.*') ? 'text-primary' : '' }} px-3 d-block"
-                                        href="{{ route('profile.index') }}">
+                                        class="nav-link {{ request()->routeIs('profiles.*') ? 'text-primary' : '' }} px-3 d-block"
+                                        href="{{ route('profiles.index') }}">
                                         <span class="me-2 text-body align-bottom"
                                             data-feather="user"></span><span>Profile</span></a></li>
                                 <li class="nav-item"><a
-                                        class="nav-link {{ request()->routeIs('dashboard') ? 'text-primary' : '' }} px-3 d-block"
-                                        href="{{ route('dashboard') }}"><span class="me-2 text-body align-bottom"
+                                        class="nav-link {{ request()->routeIs('dashboard.*') ? 'text-primary' : '' }} px-3 d-block"
+                                        href="{{ route('dashboard.index') }}"><span
+                                            class="me-2 text-body align-bottom"
                                             data-feather="pie-chart"></span>Dashboard</a></li>
                                 <li class="nav-item"><a class="nav-link px-3 d-block" href="#!"> <span
                                             class="me-2 text-body align-bottom" data-feather="lock"></span>Posts &amp;

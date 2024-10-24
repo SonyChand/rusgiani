@@ -15,11 +15,13 @@ class CreateOutgoingLettersTable extends Migration
             $table->string('letter_nature');
             $table->string('letter_subject');
             $table->date('letter_date');
-            $table->string('letter_destination');
+            $table->json('letter_destination');
             $table->string('to');
             $table->text('letter_body');
             $table->text('letter_closing');
-            $table->string('signed_by');
+            $table->string('sign_name');
+            $table->string('sign_nip');
+            $table->string('sign_position');
             $table->string('attachment')->nullable();
             $table->string('operator_name');
             $table->timestamps();

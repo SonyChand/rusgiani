@@ -377,6 +377,10 @@
 <script src="{{ asset('assets') }}/vendors/flatpickr/flatpickr.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/tinymce/tinymce.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/dropzone/dropzone-min.js"></script>
+<script src="{{ asset('assets') }}/vendors/echarts/echarts.min.js"></script>
+<script src="{{ asset('assets') }}/assets/js/echarts-example.js"></script>
+<script src="{{ asset('assets') }}/assets/js/projectmanagement-dashboard.js"></script>
+<script src="{{ asset('assets') }}/vendors/dhtmlx-gantt/dhtmlxgantt.js"></script>
 
 
 <div id="loader" data-wordLoad="{{ config('app.name', 'Sistem') }}">
@@ -390,7 +394,7 @@
         <span style="--i:7">G</span>
 
     </div>
-    <img src="{{ asset('assets') }}/assets/img/icons/logo.png">
+    <img src="{{ asset('assets') }}\assets\img\logos\logoDinkes.png">
     <div class="waviy">
     </div>
 </div>

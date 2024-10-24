@@ -51,6 +51,7 @@
         id="user-style-rtl">
     <link href="{{ asset('assets') }}/assets/css/user.min.css" type="text/css" rel="stylesheet"
         id="user-style-default">
+    <link href="{{ asset('assets') }}/vendors/dhtmlx-gantt/dhtmlxgantt.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@latest/build/toastr.min.css">
     <link href="{{ asset('assets') }}/vendors/dropzone/dropzone.css" rel="stylesheet" />
     <script>
@@ -105,7 +106,7 @@
             top: 40%;
             right: 50%;
             transform: translate(50%, -50%);
-            width: 12%;
+            width: 8%;
             z-index: 9999;
             text-align: center;
             vertical-align: middle;
@@ -171,7 +172,7 @@
                 top: 45%;
                 right: 50%;
                 transform: translate(50%, -50%);
-                width: 30%;
+                width: 20%;
                 z-index: 9999;
                 text-align: center;
                 vertical-align: middle;

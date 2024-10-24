@@ -83,7 +83,7 @@
             top: 40%;
             right: 50%;
             transform: translate(50%, -50%);
-            width: 12%;
+            width: 8%;
             z-index: 9999;
             text-align: center;
             vertical-align: middle;
@@ -149,7 +149,7 @@
                 top: 45%;
                 right: 50%;
                 transform: translate(50%, -50%);
-                width: 30%;
+                width: 20%;
                 z-index: 9999;
                 text-align: center;
                 vertical-align: middle;

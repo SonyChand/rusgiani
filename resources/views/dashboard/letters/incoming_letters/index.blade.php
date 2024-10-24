@@ -119,8 +119,10 @@
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end py-2">
                                                     @can('incoming_letter-download')
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('incoming-letters.download', $row->id) }}">Download</a>
+                                                        @if ($row->file_path != null)
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('incoming-letters.download', $row->id) }}">Download</a>
+                                                        @endif
                                                     @endcan
                                                     @can('incoming_letter-edit')
                                                         <a class="dropdown-item"

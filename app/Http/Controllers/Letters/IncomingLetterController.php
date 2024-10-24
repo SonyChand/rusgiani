@@ -35,7 +35,7 @@ class IncomingLetterController extends Controller
      */
     public function index(Request $request): View
     {
-        $title = 'Letters';
+        $title = 'Surat Masuk';
         $letters = IncomingLetter::orderBy('id', 'DESC')->get();
 
         return view('dashboard.letters.incoming_letters.index', compact('letters', 'title'));
@@ -48,7 +48,7 @@ class IncomingLetterController extends Controller
      */
     public function create(): View
     {
-        $title = 'Create Letter';
+        $title = 'Tambah Surat Masuk';
 
         return view('dashboard.letters.incoming_letters.create', compact('title'));
     }
@@ -75,7 +75,7 @@ class IncomingLetterController extends Controller
 
         if ($request->hasFile('file_path')) {
             $file = $request->file('file_path');
-            $filePath = $file->store('letters/incoming_letters', 'public');
+            $filePath = $file->store('surat/surat_masuk', 'public');
             $validatedData['file_path'] = $filePath;
         }
 
@@ -100,13 +100,6 @@ class IncomingLetterController extends Controller
             'title' => 'Surat Masuk',
             'letter' => $letter
         ];
-
-        $pdf = PDF::loadView('dashboard.letters.incoming_letters.pdf', $data)
-            ->setPaper([0, 0, 595.28, 935.43], 'portrait');
-
-        // Save PDF to storage
-        $pdfPath = 'letters/incoming_letters/' . $letter->letter_number . '-' . $letter->id . '.pdf';
-        Storage::disk('public')->put($pdfPath, $pdf->output());
 
         Mail::to('sonychandmaulana@gmail.com')->send(new IncomingLetterNotification($request->user(), 'penambahan', $letter->id, null));
 
@@ -135,7 +128,7 @@ class IncomingLetterController extends Controller
      */
     public function edit($letterId): View
     {
-        $title = 'Edit Letter';
+        $title = 'Edit Surat Masuk';
         $letter = IncomingLetter::find($letterId);
 
         return view('dashboard.letters.incoming_letters.edit', compact('title', 'letter'));
@@ -166,7 +159,7 @@ class IncomingLetterController extends Controller
 
         if ($request->hasFile('file_path')) {
             $file = $request->file('file_path');
-            $filePath = $file->store('letters/incoming_letters', 'public');
+            $filePath = $file->store('surat/surat_masuk', 'public');
             $validatedData['file_path'] = $filePath;
         }
 
@@ -220,13 +213,6 @@ class IncomingLetterController extends Controller
             'letter' => $letter
         ];
 
-        $pdf = PDF::loadView('dashboard.letters.incoming_letters.pdf', $data)
-            ->setPaper([0, 0, 595.28, 935.43], 'portrait');
-
-        // Save PDF to storage
-        $pdfPath = 'letters/incoming_letters/' . $letter->letter_number . '-' . $letter->id . '.pdf';
-        Storage::disk('public')->put($pdfPath, $pdf->output());
-
         Mail::to('sonychandmaulana@gmail.com')->send(new IncomingLetterNotification($request->user(), 'perubahan', $letter->id, $originalData));
 
         return redirect()->route('incoming-letters.index')
@@ -247,9 +233,7 @@ class IncomingLetterController extends Controller
             if (Storage::disk('public')->exists($filePath)) {
                 Storage::disk('public')->delete($filePath);
             }
-            $pdfPath = 'letters/incoming_letters/' . $letter->letter_number . '-' . $letter->id . '.pdf';
-            Storage::disk('public')->delete($pdfPath);
-            $description = 'Pengguna ' . Auth::user()->email  . ' menghapus surat masuk dengan nomor surat: ' . $letter->letter_number;
+            $description = 'Pengguna ' . Auth::user()->name  . ' menghapus surat masuk dengan nomor surat: ' . $letter->letter_number;
             $this->logActivity('incoming_letters', Auth::user(), $letter->id, $description);
             $letter->delete();
             return redirect()->route('incoming-letters.index')
@@ -270,11 +254,9 @@ class IncomingLetterController extends Controller
                     if (Storage::disk('public')->exists($filePath)) {
                         Storage::disk('public')->delete($filePath);
                     }
-                    $description = 'Pengguna ' . Auth::user()->email  . ' menghapus surat masuk dengan nomor surat: ' . $data->letter_number;
+                    $description = 'Pengguna ' . Auth::user()->name  . ' menghapus surat masuk dengan nomor surat: ' . $data->letter_number;
                     $this->logActivity('incoming_letters', Auth::user(), $data->id, $description);
                 }
-                $pdfPath = 'letters/incoming_letters/' . $data->letter_number . '-' . $data->id . '.pdf';
-                Storage::disk('public')->delete($pdfPath);
             }
             IncomingLetter::whereIn('id', $letterIds)->delete();
             return redirect()->route('incoming-letters.index')->with('success', 'Surat-surat masuk berhasil dihapus');
@@ -285,9 +267,8 @@ class IncomingLetterController extends Controller
     public function download($id)
     {
         $letter = IncomingLetter::find($id);
-        $pdfPath = 'letters/incoming_letters/' . $letter->letter_number . '-' . $letter->id . '.pdf';
-        $description = 'Pengguna ' . Auth::user()->email  . ' mengunduh surat masuk dengan nomor surat: ' . $letter->letter_number;
+        $description = 'Pengguna ' . Auth::user()->name  . ' mengunduh surat masuk dengan nomor surat: ' . $letter->letter_number;
         $this->logActivity('incoming_letters', Auth::user(), $letter->id, $description);
-        return Storage::disk('public')->download($pdfPath);
+        return Storage::disk('public')->download($letter->file_path);
     }
 }

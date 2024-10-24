@@ -79,9 +79,11 @@ class ProfileController extends Controller
                 'password' => ['nullable', 'confirmed', Password::defaults()], // 'nullable' allows optional password update
             ]);
             $user->password = Hash::make($request->password);
-            $this->logActivity('Edit password', $request->user());
+            $description = 'Edit password';
+            $this->logActivity('edit_password', $request->user(), null, $description);
         } else {
-            $this->logActivity('Edit profile', $request->user());
+            $description = 'Edit profil';
+            $this->logActivity('edit_profile', $request->user(), null, $description);
         }
 
         $user->save();

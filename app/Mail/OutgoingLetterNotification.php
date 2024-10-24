@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Log;
-use App\Models\Letters\IncomingLetter;
+use App\Models\Letters\OutgoingLetter;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Mail\Mailables\Attachment;
 use Stevebauman\Location\Facades\Location;
 
-class IncomingLetterNotification extends Mailable
+class OutgoingLetterNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -42,7 +42,7 @@ class IncomingLetterNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Aktivitas ' . $this->action . ' Surat Masuk',
+            subject: 'Aktivitas ' . $this->action . ' Surat Keluar',
         );
     }
 
@@ -52,22 +52,19 @@ class IncomingLetterNotification extends Mailable
     public function content(): Content
     {
         // $oldData = $this->oldData;
-        $letter = IncomingLetter::findOrFail($this->key_id);
+        $letter = OutgoingLetter::findOrFail($this->key_id);
         $oldData = $letter->getOriginal();
 
-        $letter->source_letter = json_decode($letter->source_letter, true);
-        $letter->addressed_to = json_decode($letter->addressed_to, true);
-        $letter->forwarded_disposition = json_decode($letter->forwarded_disposition, true);
+        $letter->letter_destination = json_decode($letter->letter_destination, true);
 
-        $oldData['source_letter'] = json_decode($oldData['source_letter'], true);
-        $oldData['addressed_to'] = json_decode($oldData['addressed_to'], true);
-        $oldData['forwarded_disposition'] = json_decode($oldData['forwarded_disposition'], true);
+        $oldData['letter_destination'] = json_decode($oldData['letter_destination'], true);
+
         return new Content(
-            view: 'emails.incoming_letter_notification',
+            view: 'emails.outgoing_letter_notification',
             with: [
                 'action' => $this->action,
                 'letter' => $letter,
-                'oldData' => $this->oldData,
+                'oldData' => $oldData,
                 'location' => $this->location,
             ],
         );
@@ -80,16 +77,15 @@ class IncomingLetterNotification extends Mailable
      */
     public function attachments(): array
     {
-        $letter = IncomingLetter::find($this->key_id);
+        $letter = OutgoingLetter::find($this->key_id);
         $attachments = [];
         if ($letter->file_path == null) {
             $filePaths = [
-                public_path("storage/surat/surat_masuk/{$letter->letter_number}-{$letter->id}.pdf")
+                public_path("storage/surat/surat_keluar/{$letter->letter_type}/{$letter->letter_number}-{$letter->id}.pdf")
             ];
         } else {
             $filePaths = [
-                public_path("storage/surat/surat_masuk/{$letter->letter_number}-{$letter->id}.pdf"),
-                public_path("storage/{$letter->file_path}"),
+                public_path("storage/surat/surat_keluar/{$letter->letter_type}/{$letter->letter_number}-{$letter->id}.pdf")
             ];
         }
 

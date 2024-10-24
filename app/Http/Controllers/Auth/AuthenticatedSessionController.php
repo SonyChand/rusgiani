@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $description = 'Pengguna ' . $request->user()->name . ' login dari ' . $request->ip();
+        $description = 'Pengguna ' . $request->user()->name . ' masuk sistem dari IP Address: ' . $request->ip();
         $this->logActivity('login', $request->user(), null, $description);
 
 
@@ -48,13 +48,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $this->logActivity('Logged out', $request->user());
+        $description = 'Pengguna ' . $request->user()->name . ' keluar sistem';
+        $this->logActivity('logout', $request->user(), null, $description);
         Auth::guard('web')->logout();
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
 
-        return redirect(route('login'))->with('success', 'You have been logged out.');
+        return redirect(route('login'))->with('success', 'Logout berhasil.');
     }
 }

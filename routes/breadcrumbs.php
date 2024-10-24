@@ -12,12 +12,37 @@ Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
 // Dashboard > Profile
 Breadcrumbs::for('profile', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
-    $trail->push('Profile', route('profiles.index'));
+    $trail->push('Profil', route('profiles.index'));
 });
 
-Breadcrumbs::for('letters', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('surat masuk', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
-    $trail->push('Letter');
+    $trail->push('Surat Masuk', route('incoming-letters.index'));
+});
+
+Breadcrumbs::for('tambah surat masuk', function (BreadcrumbTrail $trail) {
+    $trail->parent('surat masuk');
+    $trail->push('Tambah', route('incoming-letters.create'));
+});
+
+Breadcrumbs::for('edit surat masuk', function (BreadcrumbTrail $trail) {
+    $trail->parent('surat masuk');
+    $trail->push('Edit');
+});
+
+Breadcrumbs::for('surat keluar', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Surat Keluar', route('outgoing-letters.index'));
+});
+
+Breadcrumbs::for('tambah surat keluar', function (BreadcrumbTrail $trail) {
+    $trail->parent('surat keluar');
+    $trail->push('Tambah', route('outgoing-letters.create'));
+});
+
+Breadcrumbs::for('edit surat keluar', function (BreadcrumbTrail $trail) {
+    $trail->parent('surat keluar');
+    $trail->push('Edit');
 });
 
 // Dashboard > Profile > Edit
@@ -29,7 +54,7 @@ Breadcrumbs::for('edit profile', function (BreadcrumbTrail $trail) {
 // Dashboard > User
 Breadcrumbs::for('users', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
-    $trail->push('User');
+    $trail->push('Pengguna', route('users.index'));
 });
 
 // Dashboard > User > Edit
@@ -41,7 +66,7 @@ Breadcrumbs::for('edit user', function (BreadcrumbTrail $trail) {
 // Dashboard > User > Add
 Breadcrumbs::for('create user', function (BreadcrumbTrail $trail) {
     $trail->parent('users');
-    $trail->push('Add', route('users.create'));
+    $trail->push('Tambah', route('users.create'));
 });
 
 // Dashboard > User > Show
@@ -62,10 +87,10 @@ Breadcrumbs::for('edit role', function (BreadcrumbTrail $trail) {
     $trail->push('Edit');
 });
 
-// Dashboard > Role > Add
+// Dashboard > Role > Tambah
 Breadcrumbs::for('create role', function (BreadcrumbTrail $trail) {
     $trail->parent('roles');
-    $trail->push('Add', route('roles.create'));
+    $trail->push('Tambah', route('roles.create'));
 });
 
 // Dashboard > Role > Show

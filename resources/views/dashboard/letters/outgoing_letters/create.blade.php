@@ -2,53 +2,51 @@
     @slot('title')
         {{ $title }}
     @endslot
-    <h2 class="mb-4">Tambah surat masuk</h2>
+    <h2 class="mb-4">Tambah surat keluar</h2>
     <div class="row">
         <div class="col-xl-9">
             <form class="row g-3 mb-6 needs-validation" novalidate="" method="POST"
-                action="{{ route('incoming-letters.store') }}" onsubmit="convertToJson()" enctype="multipart/form-data">
+                action="{{ route('outgoing-letters.store') }}" onsubmit="convertToJson()" enctype="multipart/form-data">
                 @csrf
-                <!-- New input fields for letters -->
                 <div class="col-sm-12 col-md-12">
                     <div class="form-floating form-floating-advance-select">
-                        <label>Sumber/Asal Surat</label>
-                        <select class="form-select" id="source" data-choices="data-choices" multiple="multiple"
-                            data-options='{"removeItemButton":true,"placeholder":true}' required name="source[]">
-                            <option hidden value="">Pilih Sumber/Asal Surat (Bisa lebih dari 1)</option>
-                            <option value="provinsi" {{ in_array('provinsi', old('source', [])) ? 'selected' : '' }}>
-                                Provinsi</option>
-                            <option value="bupati" {{ in_array('bupati', old('source', [])) ? 'selected' : '' }}>Bupati
+                        <label for="letter_type">Tipe Surat</label>
+                        <select class="form-select" id="letter_type" data-choices="data-choices" size="1"
+                            name="letter_type" data-options='{"removeItemButton":true,"placeholder":true}' required>
+                            <option value="" hidden>Pilih Tipe Surat</option>
+                            <option value="surat_undangan"
+                                {{ old('letter_type') == 'surat_undangan' ? 'selected' : '' }}>Surat Undangan
                             </option>
-                            <option value="puskesmas" {{ in_array('puskesmas', old('source', [])) ? 'selected' : '' }}>
-                                Puskesmas</option>
-                            <option value="dinas_terkait"
-                                {{ in_array('dinas_terkait', old('source', [])) ? 'selected' : '' }}>Dinas Terkait
+                            <option value="surat_dinas" {{ old('letter_type') == 'surat_dinas' ? 'selected' : '' }}>
+                                Surat Dinas
                             </option>
-                            <option value="lsm" {{ in_array('lsm', old('lsm', [])) ? 'selected' : '' }}>LSM
+                            <option value="surat_panggilan"
+                                {{ old('letter_type') == 'surat_panggilan' ? 'selected' : '' }}>Surat Panggilan
                             </option>
-                            <option value="surat_kabar"
-                                {{ in_array('surat_kabar', old('surat_kabar', [])) ? 'selected' : '' }}>Surat Kabar
+                            <option value="surat_teguran" {{ old('letter_type') == 'surat_teguran' ? 'selected' : '' }}>
+                                Surat Teguran
                             </option>
-                            <option value="lainnya" {{ in_array('lainnya', old('lainnya', [])) ? 'selected' : '' }}>
-                                Lainnya</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12">
-                    <div class="form-floating form-floating-advance-select">
-                        <label>Ditujukan kepada</label>
-                        <select class="form-select" id="addressed_to" data-choices="data-choices" multiple="multiple"
-                            data-options='{"removeItemButton":true,"placeholder":true}' required name="addressed_to[]">
-                            <option hidden value="">Pilih Ditujukan kepada (Bisa lebih dari 1)</option>
-                            <option value="kepala_dinas"
-                                {{ in_array('kepala_dinas', old('addressed_to', [])) ? 'selected' : '' }}>Kepala Dinas
+                            <option value="surat_pernyataan"
+                                {{ old('letter_type') == 'surat_pernyataan' ? 'selected' : '' }}>Surat Pernyataan
                             </option>
-                            <option value="kepala_bidang_p2p"
-                                {{ in_array('kepala_bidang_p2p', old('addressed_to', [])) ? 'selected' : '' }}>Kepala
-                                Bidang P2P</option>
-                            <option value="kepala_bidan_yankes"
-                                {{ in_array('kepala_bidan_yankes', old('addressed_to', [])) ? 'selected' : '' }}>Kepala
-                                Bidan Yankes</option>
+                            <option value="surat_pernyataan_HUKDIS"
+                                {{ old('letter_type') == 'surat_pernyataan_HUKDIS' ? 'selected' : '' }}>Surat
+                                Pernyataan HUKDIS
+                            </option>
+                            <option value="surat_perjanjian_damai"
+                                {{ old('letter_type') == 'surat_perjanjian_damai' ? 'selected' : '' }}>
+                                Surat Perjanjian Damai
+                            </option>
+                            <option value="surat_izin_magang"
+                                {{ old('letter_type') == 'surat_izin_magang' ? 'selected' : '' }}>
+                                Surat Izin Magang
+                            </option>
+                            <option value="surat_SPMT" {{ old('letter_type') == 'surat_SPMT' ? 'selected' : '' }}>
+                                Surat SPMT
+                            </option>
+                            <option value="lainnya" {{ old('letter_type') == 'lainnya' ? 'selected' : '' }}>
+                                Lainnya
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -60,6 +58,30 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="form-floating form-floating-advance-select">
+                            <label for="letter_nature">Sifat Surat</label>
+                            <select class="form-select" id="letter_nature" data-choices="data-choices" size="1"
+                                name="letter_nature" data-options='{"removeItemButton":true,"placeholder":true}'
+                                required>
+                                <option value="" hidden>Pilih Sifat Surat</option>
+                                <option value="penting" {{ old('letter_nature') == 'penting' ? 'selected' : '' }}>
+                                    Penting
+                                </option>
+                                <option value="biasa" {{ old('letter_nature') == 'biasa' ? 'selected' : '' }}>
+                                    Biasa</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-floating">
+                        <input class="form-control" id="letter_subject" type="text" name="letter_subject"
+                            placeholder="Perihal" value="{{ old('letter_subject') }}" required />
+                        <label for="letter_subject">Perihal</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12">
                     <div class="form-floating">
                         <input class="form-control" id="letter_date" type="date" name="letter_date"
                             value="{{ old('letter_date') }}" required />
@@ -68,40 +90,79 @@
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <div class="form-floating">
-                        <input class="form-control" id="subject" type="text" name="subject" placeholder="Perihal"
-                            value="{{ old('subject') }}" required />
-                        <label for="subject">Perihal</label>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12">
-                    <div class="form-floating form-floating-advance-select">
+                        <input class="form-control" id="attachment" type="text" name="attachment"
+                            placeholder="Lampiran" value="{{ old('attachment') }}" required />
                         <label for="attachment">Lampiran</label>
-                        <select class="form-select" id="organizerSingle2" data-choices="data-choices" size="1"
-                            name="attachment" data-options='{"removeItemButton":true,"placeholder":true}' required>
-                            <option value="" hidden>Pilih Lampiran</option>
-                            <option value="ada" {{ old('attachment') == 'ada' ? 'selected' : '' }}>Ada</option>
-                            <option value="tidak_ada" {{ old('attachment') == 'tidak_ada' ? 'selected' : '' }}>Tidak
-                                Ada</option>
-                        </select>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <div class="form-floating form-floating-advance-select">
-                        <label>Diteruskan/Disposisi</label>
-                        <select class="form-select" id="forwarded_disposition" data-choices="data-choices"
+                        <label>Tujuan Surat</label>
+                        <select class="form-select" id="letter_destination" data-choices="data-choices"
                             multiple="multiple" data-options='{"removeItemButton":true,"placeholder":true}'
-                            name="forwarded_disposition[]" required>
-                            <option hidden value="">Pilih Diteruskan/Disposisi (Bisa lebih dari 1)</option>
-                            <option value="kepala_dinas"
-                                {{ in_array('kepala_dinas', old('forwarded_disposition', [])) ? 'selected' : '' }}>
-                                Kepala Dinas</option>
-                            <option value="kepala_bidang_p2p"
-                                {{ in_array('kepala_bidang_p2p', old('forwarded_disposition', [])) ? 'selected' : '' }}>
-                                Kepala Bidang P2P</option>
-                            <option value="kepala_bidan_yankes"
-                                {{ in_array('kepala_bidan_yankes', old('forwarded_disposition', [])) ? 'selected' : '' }}>
-                                Kepala Bidan Yankes</option>
+                            name="letter_destination[]" required>
+                            <option hidden value="">Pilih Tujuan Surat (Bisa lebih dari 1)</option>
+                            <option value="provinsi" {{ in_array('provinsi', old('source', [])) ? 'selected' : '' }}>
+                                Provinsi</option>
+                            <option value="bupati" {{ in_array('bupati', old('source', [])) ? 'selected' : '' }}>Bupati
+                            </option>
+                            <option value="puskesmas" {{ in_array('puskesmas', old('source', [])) ? 'selected' : '' }}>
+                                Puskesmas</option>
+                            <option value="dinas_terkait"
+                                {{ in_array('dinas_terkait', old('source', [])) ? 'selected' : '' }}>Dinas Terkait
+                            </option>
+                            <option value="PNS/P3K_dinkes"
+                                {{ in_array('PNS/P3K_dinkes', old('PNS/P3K_dinkes', [])) ? 'selected' : '' }}>PNS/P3K
+                                Dinkes
+                            </option>
+                            <option value="PNS/P3K_puskesmas"
+                                {{ in_array('PNS/P3K_puskesmas', old('PNS/P3K_puskesmas', [])) ? 'selected' : '' }}>
+                                PNS/P3K
+                                Puskesmas
+                            </option>
+                            <option value="lainnya" {{ in_array('lainnya', old('lainnya', [])) ? 'selected' : '' }}>
+                                Lainnya</option>
                         </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-12">
+                    <label>Ditandatangani oleh:</label>
+                    <div class="form-floating my-2">
+                        <input class="form-control" id="sign_name" type="text" name="sign_name" placeholder="Nama"
+                            value="{{ old('sign_name') }}" required />
+                        <label for="sign_name">Nama</label>
+                    </div>
+                    <div class="form-floating my-2">
+                        <input class="form-control" id="sign_nip" type="text" name="sign_nip" placeholder="NIP"
+                            value="{{ old('sign_nip') }}" required />
+                        <label for="sign_nip">NIP</label>
+                    </div>
+                    <div class="form-floating my-2">
+                        <input class="form-control" id="sign_position" type="text" name="sign_position"
+                            placeholder="Jabatan" value="{{ old('sign_position') }}" required />
+                        <label for="sign_position">Jabatan</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-floating">
+                        <textarea class="form-control" id="to" type="text" name="to" placeholder="Kepada Yth :" required
+                            style="height: 100px">{{ old('to') }}</textarea>
+                        <label for="to">Kepada Yth :</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-floating">
+                        <textarea class="form-control" id="letter_body" type="text" name="letter_body" placeholder="Isi Surat :"
+                            required style="height: 150px">{{ old('letter_body') }}</textarea>
+                        <label for="letter_body">Isi Surat :</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-floating">
+                        <textarea class="form-control" id="letter_closing" type="text" name="letter_closing"
+                            placeholder="Penutup Surat :" required style="height: 150px">{{ old('letter_closing') }}</textarea>
+                        <label for="letter_closing">Penutup Surat :</label>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12">
@@ -110,21 +171,6 @@
                             placeholder="Nama Operator/Admin" value="{{ old('operator_name') }}" required />
                         <label for="operator_name">Nama Operator/Admin</label>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-12">
-                    <label for="file_path">Upload Surat Masuk</label>
-                    <input class="form-control" id="file_path" type="file" name="file_path"
-                        accept=".pdf,image/*" />
-                    <small class="text-muted">hanya format PDF dan gambar. Maksimal ukuran: 1MB.</small>
-                    <script>
-                        document.getElementById('file_path').addEventListener('change', function() {
-                            const file = this.files[0];
-                            if (file && file.size > 1048576) { // 1MB in bytes
-                                alert('File melebihi 1MB');
-                                this.value = ''; // Clear the input
-                            }
-                        });
-                    </script>
                 </div>
                 <!-- End of new input fields -->
                 <div class="col-12 gy-6">
@@ -138,25 +184,17 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="source_json" id="source_json">
-                <input type="hidden" name="addressed_to_json" id="addressed_to_json">
-                <input type="hidden" name="forwarded_disposition_json" id="forwarded_disposition_json">
+                <input type="hidden" name="letter_destination_json" id="letter_destination_json">
             </form>
         </div>
     </div>
     <script>
         function convertToJson() {
             showLoader();
-            const sourceSelect = document.getElementById('source');
-            const addressedToSelect = document.getElementById('addressed_to');
-            const forwardedDispositionSelect = document.getElementById('forwarded_disposition');
-
-            document.getElementById('source_json').value = JSON.stringify(Array.from(sourceSelect.selectedOptions).map(
+            const letterDestinationSelect = document.getElementById('letter_destination');
+            document.getElementById('letter_destination_json').value = JSON.stringify(Array.from(letterDestinationSelect
+                .selectedOptions).map(
                 option => option.value));
-            document.getElementById('addressed_to_json').value = JSON.stringify(Array.from(addressedToSelect
-                .selectedOptions).map(option => option.value));
-            document.getElementById('forwarded_disposition_json').value = JSON.stringify(Array.from(
-                forwardedDispositionSelect.selectedOptions).map(option => option.value));
         }
     </script>
 </x-dash.layout>

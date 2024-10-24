@@ -183,11 +183,10 @@
               show: false
             },
             data: [
-              { value: 78, name: 'Product design' },
-              { value: 63, name: 'Development' },
-              { value: 56, name: 'QA & Testing' },
-              { value: 36, name: 'Customer queries' },
-              { value: 24, name: 'R & D' }
+              { value: 78, name: 'P2Q' },
+              { value: 63, name: 'Kesmas' },
+              { value: 56, name: 'SDMK' },
+              { value: 36, name: 'Keuangan' }
             ]
           }
         ],

@@ -16,7 +16,7 @@ class CreateDispositionsTable extends Migration
             $table->string('disposition_to');
             $table->text('notes')->nullable();
             $table->date('disposition_date');
-            $table->string('sign')->nullable();
+            $table->string('signed_by')->nullable();
             $table->timestamps();
 
             $table->foreign('letter_id')->references('id')->on('incoming_letters')->onDelete('cascade');

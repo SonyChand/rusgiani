@@ -10,7 +10,8 @@
                             href="{{ route('dashboard.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
                             <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                         data-feather="pie-chart"></span></span><span class="nav-link-text-wrapper"><span
-                                        class="nav-link-text">Dashboard</span></span>
+                                        class="nav-link-text">Dashboard <span
+                                            class="badge ms-2 badge badge-phoenix badge-phoenix-warning ">Demo</span></span></span>
                             </div>
                         </a>
                     </div>
@@ -95,7 +96,7 @@
                     @endcanany
 
                     <div class="nav-item-wrapper"><a
-                            class="nav-link dropdown-indicator {{ request()->routeIs('incoming-letters.*') ? '' : 'collapsed' }} label-1"
+                            class="nav-link dropdown-indicator {{ request()->routeIs('*letters.*') ? '' : 'collapsed' }} label-1"
                             href="#nv-components" role="button" data-bs-toggle="collapse" aria-expanded="true"
                             aria-controls="nv-components">
                             <div class="d-flex align-items-center">
@@ -107,13 +108,13 @@
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent {{ request()->routeIs('incoming-letters.*') ? 'show' : '' }}"
+                            <ul class="nav collapse parent {{ request()->routeIs('*letters.*') ? 'show' : '' }}"
                                 data-bs-parent="#navbarVerticalCollapse" id="nv-components">
                                 <li class="collapsed-nav-item-title d-none">Manajemen <span
                                         class="badge ms-2 badge badge-phoenix badge-phoenix-warning ">Demo</span>
                                 </li>
                                 <li class="nav-item"><a
-                                        class="nav-link dropdown-indicator {{ request()->routeIs('incoming-letters.*') ? '' : 'collapsed' }}"
+                                        class="nav-link dropdown-indicator {{ request()->routeIs('*letters.*') ? '' : 'collapsed' }}"
                                         href="#nv-carousel" data-bs-toggle="collapse" aria-expanded="true"
                                         aria-controls="nv-carousel">
                                         <div class="d-flex align-items-center">
@@ -125,7 +126,7 @@
                                     </a>
                                     <!-- more inner pages-->
                                     <div class="parent-wrapper">
-                                        <ul class="nav collapse parent {{ request()->routeIs('incoming-letters.*') ? 'show' : '' }}"
+                                        <ul class="nav collapse parent {{ request()->routeIs('*letters.*') ? 'show' : '' }}"
                                             data-bs-parent="#components" id="nv-carousel">
                                             <li class="nav-item">
                                                 <a class="nav-link {{ request()->routeIs('incoming-letters.*') ? 'active' : '' }}"
@@ -137,9 +138,27 @@
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link {{ request()->routeIs('outgoing-letters.*') ? 'active' : '' }}"
-                                                    href="{{ route('incoming-letters.index') }}">
+                                                    href="{{ route('outgoing-letters.index') }}">
                                                     <div class="d-flex align-items-center"><span
                                                             class="nav-link-text">Surat Keluar</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">
+                                                    <div class="d-flex align-items-center"><span class="nav-link-text"
+                                                            onclick="return alert('belum tersedia :)')">Rekomendasi
+                                                            <span
+                                                                class="badge ms-2 badge-sm badge-phoenix badge-phoenix-danger ">!</span></span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#"
+                                                    onclick="return alert('belum tersedia :)')">
+                                                    <div class="d-flex align-items-center"><span
+                                                            class="nav-link-text">Berkas Tugas Dinas <span
+                                                                class="badge ms-2 badge-sm badge-phoenix badge-phoenix-danger ">!</span></span></span>
                                                     </div>
                                                 </a>
                                             </li>
@@ -151,6 +170,27 @@
                     </div>
 
 
+                    <div class="nav-item-wrapper"><a class="nav-link label-1"
+                            onclick="return alert('belum tersedia :)')" href="#" role="button"
+                            data-bs-toggle="" aria-expanded="false">
+                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                        data-feather="file"></span></span><span class="nav-link-text-wrapper"><span
+                                        class="nav-link-text">e-Pelaporan
+                                        Bidang <span
+                                            class="badge ms-2 badge-sm badge-phoenix badge-phoenix-danger ">!</span></span></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="nav-item-wrapper"><a class="nav-link label-1"
+                            onclick="return alert('belum tersedia :)')" href="#" role="button"
+                            data-bs-toggle="" aria-expanded="false">
+                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                        data-feather="database"></span></span><span
+                                    class="nav-link-text-wrapper"><span class="nav-link-text">e-PKP <span
+                                            class="badge ms-2 badge-sm badge-phoenix badge-phoenix-danger ">!</span></span></span>
+                            </div>
+                        </a>
+                    </div>
                     <!-- parent pages-->
                     <div class="nav-item-wrapper">
                         <a class="nav-link dropdown-indicator label-1 {{ request()->routeIs('profiles.*') ? '' : 'collapsed' }}"

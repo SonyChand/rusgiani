@@ -7,19 +7,18 @@
         <div id="projectSummary" data-list='{"valueNames":["id","email", "name", "whatsapp"],"page":6,"pagination":true}'>
             <div class="row mb-4 gx-6 gy-3 align-items-center">
                 <div class="col-auto">
-                    <h2 class="mb-0">Surat masuk<span class="fw-normal text-body-tertiary ms-3"></span></h2>
+                    <h2 class="mb-0">Surat keluar<span class="fw-normal text-body-tertiary ms-3"></span></h2>
                 </div>
-
             </div>
-            <form method="POST" action="{{ route('incoming-letters.bulkDestroy') }}" id="bulk-delete-form">
+            <form method="POST" action="{{ route('outgoing-letters.bulkDestroy') }}" id="bulk-delete-form">
                 @csrf
                 @method('DELETE')
                 <div class="row g-3 justify-content-between align-items-end mb-4">
                     <div class="col-12 col-sm-auto">
                         <div class="d-flex align-items-center">
-                            @can('incoming_letter-create')
+                            @can('outgoing_letter-create')
                                 <div class="mt-3 mx-2">
-                                    <a class="btn btn-primary btn-sm" href="{{ route('incoming-letters.create') }}">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('outgoing-letters.create') }}">
                                         <i class="fa-solid fa-plus me-2"></i>Tambah
                                     </a>
                                 </div>
@@ -52,24 +51,31 @@
                                 </th>
                                 <th class="sort  ps-3" scope="col" data-sort="id" style="width:6%;">No
                                 </th>
-                                <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="sumber">
-                                    Sumber</th>
-                                <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="untuk">
-                                    Ditujukan</th>
+                                <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="type">
+                                    Jenis Surat</th>
                                 <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="nomor">
                                     Nomor Surat</th>
-                                <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="tanggal">Tanggal
-                                    Surat</th>
+                                <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="sifat">
+                                    Sifat Surat</th>
                                 <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="perihal">Perihal
                                 </th>
-                                <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="lampiran">Lampiran
+                                <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="tanggal">Tanggal
+                                    Surat</th>
+                                <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="tujuan">Tujuan
+                                    Surat</th>
+                                </th>
+                                <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="sifat">
+                                    Sifat Surat
+                                </th>
+                                <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="lampiran">
+                                    Lampiran
                                 </th>
                                 <th class="sort white-space-nowrap  ps-0" scope="col" data-sort="operator">
                                     Nama
                                     Operator
                                 </th>
-                                @canany(['incoming_letter-edit', 'incoming_letter-delete', 'incoming_letter-download'])
-                                    <th class="sort  text-end" scope="col"></th>
+                                @canany(['outgoing_letter-edit', 'outgoing_letter-delete', 'outgoing_letter-download'])
+                                    <th class="sort text-end" scope="col"></th>
                                 @endcanany
                             </tr>
                         </thead>
@@ -84,31 +90,31 @@
                                     <td class=" text-center time white-space-nowrap ps-0 id py-4">
                                         {{ ++$i }}</td>
                                     <td class=" time white-space-nowrap ps-0 email py-4">
-                                        <ol>
-                                            @foreach (json_decode($row->source_letter) as $src)
-                                                <li>{{ ucwords(str_replace('_', ' ', $src)) }}</li>
-                                            @endforeach
-                                        </ol>
+                                        {{ ucwords(str_replace('_', ' ', $row->letter_type)) }}
                                     </td>
-                                    <td class=" time white-space-nowrap ps-0 name py-4">
-                                        <ol>
-                                            @foreach (json_decode($row->addressed_to) as $addr)
-                                                <li>{{ ucwords(str_replace('_', ' ', $addr)) }}</li>
-                                            @endforeach
-                                        </ol>
-                                    </td>
-                                    <td class=" time white-space-nowrap ps-0 whatsapp py-4">
+                                    <td class=" time white-space-nowrap ps-0 nomor py-4">
                                         {{ $row->letter_number }}</td>
-                                    <td class=" time white-space-nowrap ps-0 whatsapp py-4">
+                                    <td class=" time white-space-nowrap ps-0 sifat py-4">
+                                        {{ $row->letter_nature }}</td>
+                                    <td class=" time white-space-nowrap ps-0 perihal py-4">
+                                        {{ $row->letter_subject }}</td>
+                                    <td class=" time white-space-nowrap ps-0 tanggal py-4">
                                         {{ $row->letter_date }}</td>
-                                    <td class=" time white-space-nowrap ps-0 whatsapp py-4">
-                                        {{ $row->subject }}</td>
-                                    <td class=" time white-space-nowrap ps-0 whatsapp py-4">
-                                        {{ ucwords(str_replace('_', ' ', $row->attachment)) }}</td>
-                                    <td class=" time white-space-nowrap ps-0 whatsapp py-4">
+                                    <td class=" time white-space-nowrap ps-0 tujuan py-4">
+                                        <ol>
+                                            @foreach (json_decode($row->letter_destination) as $dest)
+                                                <li>{{ ucwords(str_replace('_', ' ', $dest)) }}</li>
+                                            @endforeach
+                                        </ol>
+                                    </td>
+                                    <td class=" time white-space-nowrap ps-0 sifat py-4">
+                                        {{ $row->letter_nature }}</td>
+                                    <td class=" time white-space-nowrap ps-0 lampiran py-4">
+                                        {{ $row->attachment }}</td>
+                                    <td class=" time white-space-nowrap ps-0 operator py-4">
                                         {{ $row->operator_name }}</td>
-                                    @canany(['incoming_letter-edit', 'incoming_letter-delete',
-                                        'incoming_letter-download'])
+                                    @canany(['outgoing_letter-edit', 'outgoing_letter-delete',
+                                        'outgoing_letter-download'])
                                         <td class=" text-end white-space-nowrap pe-0 action">
                                             <div class="btn-reveal-trigger position-static">
                                                 <button
@@ -118,18 +124,18 @@
                                                     <span class="fas fa-ellipsis-h fs-10"></span>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end py-2">
-                                                    @can('incoming_letter-download')
+                                                    @can('outgoing_letter-download')
                                                         <a class="dropdown-item"
-                                                            href="{{ route('incoming-letters.download', $row->id) }}">Download</a>
+                                                            href="{{ route('outgoing-letters.download', $row->id) }}">Download</a>
                                                     @endcan
-                                                    @can('incoming_letter-edit')
+                                                    @can('outgoing_letter-edit')
                                                         <a class="dropdown-item"
-                                                            href="{{ route('incoming-letters.edit', $row->id) }}">Edit</a>
+                                                            href="{{ route('outgoing-letters.edit', $row->id) }}">Edit</a>
                                                     @endcan
-                                                    @can('incoming_letter-delete')
+                                                    @can('outgoing_letter-delete')
                                                         <div class="dropdown-divider"></div>
                                                         <form method="POST"
-                                                            action="{{ route('incoming-letters.destroy', $row->id) }}"
+                                                            action="{{ route('outgoing-letters.destroy', $row->id) }}"
                                                             style="display:inline">
                                                             @csrf
                                                             @method('DELETE')

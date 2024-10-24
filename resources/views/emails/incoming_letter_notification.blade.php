@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Aktivitas {{ $action }}</title>
+    <title>Aktivitas {{ $action }} surat masuk</title>
     <style>
         body {
             font-family: sans-serif;

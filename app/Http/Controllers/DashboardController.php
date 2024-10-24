@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Letters\IncomingLetter;
+use App\Models\Letters\OutgoingLetter;
 
 class DashboardController extends Controller
 {
@@ -23,6 +25,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $incomingLettersCount = IncomingLetter::count();
+        $outgoingLettersCount = OutgoingLetter::count();
+
+        return view('dashboard.index', compact('incomingLettersCount', 'outgoingLettersCount'));
     }
 }

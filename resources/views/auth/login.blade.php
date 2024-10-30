@@ -23,7 +23,7 @@
                     </a>
                     <div class="text-center mb-7">
                         <h3 class="text-body-highlight">Sign In</h3>
-                        <p class="text-body-tertiary">masuk ke SiDANIS</p>
+                        <p class="text-body-tertiary">masuk ke {{ config('app.name', 'Laravel') }}</p>
                     </div>
                     <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate=""
                         onsubmit="showLoader()">

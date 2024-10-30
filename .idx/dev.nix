@@ -1,7 +1,7 @@
 {pkgs}: {
   channel = "stable-23.11";
   packages = [
-    pkgs.nodejs_20
+    pkgs.nodejs_18
     pkgs.php83Packages.composer
     pkgs.php83
   ];

@@ -8,5 +8,7 @@
 
 {{ $slot }}
 <x-dash.footer>
-
+    @slot('subtitle')
+        {{ $title }}
+    @endslot
 </x-dash.footer>

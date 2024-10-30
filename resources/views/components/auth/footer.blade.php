@@ -104,7 +104,7 @@
 <script src="{{ asset('assets') }}/vendors/dayjs/dayjs.min.js"></script>
 <script src="{{ asset('assets') }}/assets/js/phoenix.js"></script>
 
-<div id="loader" data-wordLoad="{{ config('app.name', 'Sistem') }}">
+<div id="loader" data-wordLoad="{{ config('app.name', 'Sistem') . ' - ' . $subtitle }}">
     <div class="waviy">
         <span style="--i:1">L</span>
         <span style="--i:2">O</span>
@@ -143,10 +143,10 @@
         }
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector("body").style.visibility = "hidden";
-        document.querySelector("#loader").style.display = "block";
-    });
+    // document.addEventListener("DOMContentLoaded", function() {
+    //     document.querySelector("body").style.visibility = "hidden";
+    //     document.querySelector("#loader").style.display = "block";
+    // });
 
     document.onreadystatechange = function() {
         if (document.readyState === "complete") {
@@ -168,6 +168,18 @@
 
             @if (session('success'))
                 toastr.success("{{ session('success') }}");
+            @endif
+
+            @if (session('info'))
+                toastr.info("{{ session('info') }}");
+            @endif
+
+            @if (session('warning'))
+                toastr.warning("{{ session('warning') }}");
+            @endif
+
+            @if (session('error'))
+                toastr.error("{{ session('error') }}");
             @endif
         }
     };

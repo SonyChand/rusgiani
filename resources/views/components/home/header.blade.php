@@ -29,16 +29,11 @@
     <meta name="theme-color" content="#ffffff">
     <script src="{{ asset('assets') }}/vendors/simplebar/simplebar.min.js"></script>
     <script src="{{ asset('assets') }}/assets/js/config.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
-
-    <link href="{{ asset('assets') }}/vendors/choices/choices.min.css" rel="stylesheet">
-    <link href="{{ asset('assets') }}/vendors/flatpickr/flatpickr.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap"
@@ -51,9 +46,6 @@
         id="user-style-rtl">
     <link href="{{ asset('assets') }}/assets/css/user.min.css" type="text/css" rel="stylesheet"
         id="user-style-default">
-    <link href="{{ asset('assets') }}/vendors/dhtmlx-gantt/dhtmlxgantt.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@latest/build/toastr.min.css">
-    <link href="{{ asset('assets') }}/vendors/dropzone/dropzone.css" rel="stylesheet" />
     <script>
         var phoenixIsRTL = window.config.config.phoenixIsRTL;
         if (phoenixIsRTL) {
@@ -174,11 +166,11 @@
             }
         }
     </style>
-
+    <link href="{{ asset('assets') }}/vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
 </head>
 
 
-<body>
+<body class="bg-body-emphasis" style="--phoenix-scroll-margin-top: 1.2rem;">
 
 
 

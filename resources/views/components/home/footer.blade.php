@@ -217,9 +217,10 @@
 <footer class="footer position-absolute">
     <div class="row g-0 justify-content-between align-items-center h-100">
         <div class="col-12 col-sm-auto text-center">
-            <p class="mb-0 mt-2 mt-sm-0 text-body">Sistem Informasi<span class="d-none d-sm-inline-block"></span><span
-                    class="d-none d-sm-inline-block mx-1">|</span><br class="d-sm-none" />2024 &copy;<a
-                    class="mx-1" href="#">Mitra</a>
+            <p class="mb-0 mt-2 mt-sm-0 text-body">{{ config('app.name', 'Laravel') }}<span
+                    class="d-none d-sm-inline-block"></span><span class="d-none d-sm-inline-block mx-1">|</span><br
+                    class="d-sm-none" />2024 &copy;<a class="mx-1"
+                    href="#">{{ config('app.name', 'Laravel') }}</a>
             </p>
         </div>
         <div class="col-12 col-sm-auto text-center">
@@ -286,59 +287,6 @@
             </div>
             <p class="mb-0 text-body-tertiary">Change text direction</p>
         </div>
-        <div class="setting-panel-item">
-            <h5 class="setting-panel-item-title">Vertical Navbar Appearance</h5>
-            <div class="row gx-2">
-                <div class="col-6">
-                    <input class="btn-check" id="navbar-style-default" type="radio" name="config.name"
-                        value="default" data-theme-control="phoenixNavbarVerticalStyle" />
-                    <label class="btn d-block w-100 btn-navbar-style fs-9" for="navbar-style-default"> <img
-                            class="img-fluid img-prototype d-dark-none"
-                            src="{{ asset('assets') }}/assets/img/generic/default-light.png" alt="" /><img
-                            class="img-fluid img-prototype d-light-none"
-                            src="{{ asset('assets') }}/assets/img/generic/default-dark.png" alt="" /><span
-                            class="label-text d-dark-none"> Default</span><span
-                            class="label-text d-light-none">Default</span></label>
-                </div>
-                <div class="col-6">
-                    <input class="btn-check" id="navbar-style-dark" type="radio" name="config.name"
-                        value="darker" data-theme-control="phoenixNavbarVerticalStyle" />
-                    <label class="btn d-block w-100 btn-navbar-style fs-9" for="navbar-style-dark"> <img
-                            class="img-fluid img-prototype d-dark-none"
-                            src="{{ asset('assets') }}/assets/img/generic/vertical-darker.png" alt="" /><img
-                            class="img-fluid img-prototype d-light-none"
-                            src="{{ asset('assets') }}/assets/img/generic/vertical-lighter.png"
-                            alt="" /><span class="label-text d-dark-none"> Darker</span><span
-                            class="label-text d-light-none">Lighter</span></label>
-                </div>
-            </div>
-        </div>
-        <div class="setting-panel-item">
-            <h5 class="setting-panel-item-title">Horizontal Navbar Appearance</h5>
-            <div class="row gx-2">
-                <div class="col-6">
-                    <input class="btn-check" id="navbarTopDefault" name="navbar-top-style" type="radio"
-                        value="default" data-theme-control="phoenixNavbarTopStyle" />
-                    <label class="btn d-inline-block btn-navbar-style fs-9" for="navbarTopDefault"> <span
-                            class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0"
-                                src="{{ asset('assets') }}/assets/img/generic/top-default.png" alt="" /><img
-                                class="img-fluid img-prototype d-light-none mb-0"
-                                src="{{ asset('assets') }}/assets/img/generic/top-style-darker.png"
-                                alt="" /></span><span class="label-text">Default</span></label>
-                </div>
-                <div class="col-6">
-                    <input class="btn-check" id="navbarTopDarker" name="navbar-top-style" type="radio"
-                        value="darker" data-theme-control="phoenixNavbarTopStyle" />
-                    <label class="btn d-inline-block btn-navbar-style fs-9" for="navbarTopDarker"> <span
-                            class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0"
-                                src="{{ asset('assets') }}/assets/img/generic/navbar-top-style-light.png"
-                                alt="" /><img class="img-fluid img-prototype d-light-none mb-0"
-                                src="{{ asset('assets') }}/assets/img/generic/top-style-lighter.png"
-                                alt="" /></span><span class="label-text d-dark-none">Darker</span><span
-                            class="label-text d-light-none">Lighter</span></label>
-                </div>
-            </div>
-        </div>
     </div>
 </div><a class="card setting-toggle" href="#settings-offcanvas" data-bs-toggle="offcanvas">
     <div class="card-body d-flex align-items-center px-2 py-1">
@@ -373,14 +321,12 @@
 <script src="{{ asset('assets') }}/vendors/feather-icons/feather.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/dayjs/dayjs.min.js"></script>
 <script src="{{ asset('assets') }}/assets/js/phoenix.js"></script>
-<script src="{{ asset('assets') }}/vendors/choices/choices.min.js"></script>
-<script src="{{ asset('assets') }}/vendors/flatpickr/flatpickr.min.js"></script>
-<script src="{{ asset('assets') }}/vendors/tinymce/tinymce.min.js"></script>
-<script src="{{ asset('assets') }}/vendors/dropzone/dropzone-min.js"></script>
-<script src="{{ asset('assets') }}/vendors/echarts/echarts.min.js"></script>
-<script src="{{ asset('assets') }}/assets/js/echarts-example.js"></script>
-<script src="{{ asset('assets') }}/assets/js/projectmanagement-dashboard.js"></script>
-<script src="{{ asset('assets') }}/vendors/dhtmlx-gantt/dhtmlxgantt.js"></script>
+<script src="{{ asset('assets') }}/vendors/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="{{ asset('assets') }}/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="{{ asset('assets') }}/vendors/isotope-packery/packery-mode.pkgd.min.js"></script>
+<script src="{{ asset('assets') }}/vendors/bigpicture/BigPicture.js"></script>
+<script src="{{ asset('assets') }}/vendors/typed.js/typed.umd.js"></script>
+<script src="{{ asset('assets') }}/vendors/swiper/swiper-bundle.min.js"></script>
 
 
 <div id="loader" data-wordLoad="{{ config('app.name', 'Sistem') . ' - ' . $subtitle }}">

@@ -4,4 +4,8 @@
     @endslot
 </x-auth.header>
 {{ $slot }}
-<x-auth.footer></x-auth.footer>
+<x-auth.footer>
+    @slot('subtitle')
+        {{ $title }}
+    @endslot
+</x-auth.footer>

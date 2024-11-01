@@ -11,7 +11,9 @@
                     <div class="d-flex align-items-center"><img
                             src="{{ asset('assets') }}\assets\img\logos\logoDinkes.png" alt="Logo SiDANIS"
                             width="27" />
-                        <h5 class="logo-text ms-2 d-none d-sm-block">SiDANIS</h5>
+                        <h5 class="logo-text ms-2 d-none d-sm-block">
+                            {{ config('app.name', 'Laravel') }}
+                        </h5>
                     </div>
                 </div>
             </a>

@@ -136,22 +136,22 @@
             form.classList.add('was-validated');
         } else {
             // If the form is valid, show the loader
-            document.getElementById('loader').style.display = 'block';
+            loader.style.display = 'block';
             setTimeout(() => {
                 loader.classList.add('fade-in');
             }, 50);
         }
     }
 
-    // document.addEventListener("DOMContentLoaded", function() {
-    //     document.querySelector("body").style.visibility = "hidden";
-    //     document.querySelector("#loader").style.display = "block";
-    // });
-
     document.onreadystatechange = function() {
         if (document.readyState === "complete") {
-            document.querySelector("#loader").style.display = "none";
-            document.querySelector("body").style.visibility = "visible";
+            const loader = document.querySelector("#loader");
+            loader.classList.add('fade-out');
+            setTimeout(() => {
+                loader.style.display = "none";
+                document.querySelector("body").style.visibility = "visible";
+            }, 500); // Match this duration with the CSS transition duration
+
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true,
@@ -185,7 +185,11 @@
     };
 
     function hideLoader() {
-        document.getElementById('loader').style.display = 'none';
+        const loader = document.getElementById('loader');
+        loader.classList.add('fade-out');
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 500); // Match this duration with the CSS transition duration
     }
 </script>
 

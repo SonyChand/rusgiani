@@ -18,8 +18,6 @@ return new class extends Migration
             $table->decimal('total_amount', 10, 2);
             $table->string('payment_status')->default('Pending');
             $table->string('shipping_address');
-
-            // Midtrans-related columns
             $table->string('midtrans_transaction_id')->nullable();
             $table->string('midtrans_order_id')->nullable();
             $table->string('payment_type')->nullable();
@@ -39,7 +37,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('souvenir_products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

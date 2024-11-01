@@ -23,4 +23,10 @@ class HomeController extends Controller
         return view('home.index', compact('title'));
     }
 
+    public function indexTrip(Request $request): View
+    {
+        $title = 'Destinasi Wisata';
+
+        return view('home.trip.index', compact('title'));
+    }
 }

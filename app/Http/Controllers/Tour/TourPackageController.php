@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tour;
 
 use App\Models\User;
 use Illuminate\View\View;
@@ -9,21 +9,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Models\Tour\TourPackage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-class UserController extends Controller
+class TourPackageController extends Controller
 {
     use ValidatesRequests;
 
     function __construct()
     {
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:tour_package-list|tour_package-create|tour_package-edit|tour_package-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:tour_package-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:tour_package-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:tour_package-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -32,10 +32,10 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
-        $title = 'Users';
-        $users = User::orderBy('id', 'DESC')->get();
+        $title = 'Paket Wisata';
+        $users = TourPackage::orderBy('id', 'DESC')->get();
 
-        return view('dashboard.users.index', compact('users', 'title'));
+        return view('dashboard.tour.tourpackage.index', compact('users', 'title'));
     }
 
     /**
@@ -46,7 +46,7 @@ class UserController extends Controller
     public function create(): View
     {
         $roles = Role::pluck('name', 'name')->all();
-        $title = 'Create User';
+        $title = 'Tambah Paket Wisata';
 
         return view('dashboard.users.create', compact('roles', 'title'));
     }
@@ -100,19 +100,11 @@ class UserController extends Controller
     public function edit($id): View
     {
         $title = 'Edit User';
-        $user = User::findOrFail($id);
+        $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
-        // $qrCode = QrCode::size(300)->generate(route('users.scan', $user->email));
 
         return view('dashboard.users.edit', compact('user', 'roles', 'userRole', 'title'));
-    }
-
-    public function scan($code)
-    {
-        $user = User::where('email', $code)->firstOrFail();
-        // Logika untuk memproses pembayaran QRIS
-        return view('users.scan', compact('user'));
     }
 
     /**

@@ -16,6 +16,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
+            'tour_package-list',
+            'tour_package-create',
+            'tour_package-edit',
+            'tour_package-delete',
+            'tour_package-download',
+            'tour_destination-list',
+            'tour_destination-create',
+            'tour_destination-edit',
+            'tour_destination-delete',
+            'tour_destination-download',
             'role-list',
             'role-create',
             'role-edit',

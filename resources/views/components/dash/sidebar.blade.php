@@ -96,6 +96,62 @@
                     @endcanany
 
                     <div class="nav-item-wrapper"><a
+                            class="nav-link dropdown-indicator {{ request()->routeIs('tour*.*') ? '' : 'collapsed' }} label-1"
+                            href="#nv-tour" role="button" data-bs-toggle="collapse" aria-expanded="true"
+                            aria-controls="nv-tour">
+                            <div class="d-flex align-items-center">
+                                <div class="dropdown-indicator-icon-wrapper"><span
+                                        class="fas fa-caret-right dropdown-indicator-icon"></span></div><span
+                                    class="nav-link-icon"><span data-feather="package"></span></span><span
+                                    class="nav-link-text">Wisata <span
+                                        class="badge ms-2 badge badge-phoenix badge-phoenix-warning ">Demo</span></span>
+                            </div>
+                        </a>
+                        <div class="parent-wrapper label-1">
+                            <ul class="nav collapse parent {{ request()->routeIs('tour*.*') ? 'show' : '' }}"
+                                data-bs-parent="#navbarVerticalCollapse" id="nv-tour">
+                                <li class="collapsed-nav-item-title d-none">Wisata <span
+                                        class="badge ms-2 badge badge-phoenix badge-phoenix-warning ">Demo</span>
+                                </li>
+                                <li class="nav-item"><a
+                                        class="nav-link dropdown-indicator {{ request()->routeIs('tour*.*') ? '' : 'collapsed' }}"
+                                        href="#nv-destinasi" data-bs-toggle="collapse" aria-expanded="true"
+                                        aria-controls="nv-destinasi">
+                                        <div class="d-flex align-items-center">
+                                            <div class="dropdown-indicator-icon-wrapper"><span
+                                                    class="fas fa-caret-right dropdown-indicator-icon"></span></div>
+                                            <span class="nav-link-text">Destinasi <span
+                                                    class="badge ms-2 badge badge-phoenix badge-phoenix-warning ">Demo</span></span>
+                                        </div>
+                                    </a>
+                                    <!-- more inner pages-->
+                                    <div class="parent-wrapper">
+                                        <ul class="nav collapse parent {{ request()->routeIs('tour*.*') ? 'show' : '' }}"
+                                            data-bs-parent="#tour" id="nv-destinasi">
+                                            <li class="nav-item">
+                                                <a class="nav-link {{ request()->routeIs('tour-destinations.index') ? 'active' : '' }}"
+                                                    href="{{ route('tour-destinations.index') }}">
+                                                    <div class="d-flex align-items-center"><span
+                                                            class="nav-link-text">Destinasi</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link {{ request()->routeIs('tour-packagesw.*') ? 'active' : '' }}"
+                                                    href="{{ route('tour-packages.index') }}">
+                                                    <div class="d-flex align-items-center"><span
+                                                            class="nav-link-text">Paket</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="nav-item-wrapper"><a
                             class="nav-link dropdown-indicator {{ request()->routeIs('*letters.*') ? '' : 'collapsed' }} label-1"
                             href="#nv-components" role="button" data-bs-toggle="collapse" aria-expanded="true"
                             aria-controls="nv-components">
@@ -167,29 +223,6 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-
-
-                    <div class="nav-item-wrapper"><a class="nav-link label-1"
-                            onclick="return alert('belum tersedia :)')" href="#" role="button"
-                            data-bs-toggle="" aria-expanded="false">
-                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                        data-feather="file"></span></span><span class="nav-link-text-wrapper"><span
-                                        class="nav-link-text">e-Pelaporan
-                                        Bidang <span
-                                            class="badge ms-2 badge-sm badge-phoenix badge-phoenix-danger ">!</span></span></span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="nav-item-wrapper"><a class="nav-link label-1"
-                            onclick="return alert('belum tersedia :)')" href="#" role="button"
-                            data-bs-toggle="" aria-expanded="false">
-                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                        data-feather="database"></span></span><span
-                                    class="nav-link-text-wrapper"><span class="nav-link-text">e-PKP <span
-                                            class="badge ms-2 badge-sm badge-phoenix badge-phoenix-danger ">!</span></span></span>
-                            </div>
-                        </a>
                     </div>
                     <!-- parent pages-->
                     <div class="nav-item-wrapper">

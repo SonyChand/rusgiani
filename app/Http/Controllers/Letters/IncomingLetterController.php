@@ -227,10 +227,10 @@ class IncomingLetterController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        $letter = IncomingLetter::find($id);
+        $letter = IncomingLetter::findOrFail($id);
         if ($letter) {
             $filePath =  $letter->file_path;
-            if (Storage::disk('public')->exists($filePath)) {
+            if ($filePath && Storage::disk('public')->exists($filePath)) {
                 Storage::disk('public')->delete($filePath);
             }
             $description = 'Pengguna ' . Auth::user()->name  . ' menghapus surat masuk dengan nomor surat: ' . $letter->letter_number;
@@ -251,7 +251,7 @@ class IncomingLetterController extends Controller
                 $data = IncomingLetter::find($letterId);
                 if ($data) {
                     $filePath = $data->file_path;
-                    if (Storage::disk('public')->exists($filePath)) {
+                    if ($filePath && Storage::disk('public')->exists($filePath)) {
                         Storage::disk('public')->delete($filePath);
                     }
                     $description = 'Pengguna ' . Auth::user()->name  . ' menghapus surat masuk dengan nomor surat: ' . $data->letter_number;

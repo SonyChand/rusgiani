@@ -214,7 +214,7 @@
         navbarVertical.setAttribute('data-navbar-appearance', 'darker');
     }
 </script>
-<footer class="footer position-absolute">
+<footer class="footer position-relative">
     <div class="row g-0 justify-content-between align-items-center h-100">
         <div class="col-12 col-sm-auto text-center">
             <p class="mb-0 mt-2 mt-sm-0 text-body">{{ config('app.name', 'Laravel') }}<span
@@ -288,7 +288,8 @@
             <p class="mb-0 text-body-tertiary">Change text direction</p>
         </div>
     </div>
-</div><a class="card setting-toggle" href="#settings-offcanvas" data-bs-toggle="offcanvas">
+</div>
+<a class="card setting-toggle" href="#settings-offcanvas" data-bs-toggle="offcanvas">
     <div class="card-body d-flex align-items-center px-2 py-1">
         <div class="position-relative rounded-start" style="height:34px;width:28px">
             <div class="settings-popover"><span class="ripple"><span
@@ -362,7 +363,7 @@
             form.classList.add('was-validated');
         } else {
             // If the form is valid, show the loader
-            document.getElementById('loader').style.display = 'block';
+            loader.style.display = 'block';
             setTimeout(() => {
                 loader.classList.add('fade-in');
             }, 50);
@@ -371,8 +372,13 @@
 
     document.onreadystatechange = function() {
         if (document.readyState === "complete") {
-            document.querySelector("#loader").style.display = "none";
-            document.querySelector("body").style.visibility = "visible";
+            const loader = document.querySelector("#loader");
+            loader.classList.add('fade-out');
+            setTimeout(() => {
+                loader.style.display = "none";
+                document.querySelector("body").style.visibility = "visible";
+            }, 500); // Match this duration with the CSS transition duration
+
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true,
@@ -406,7 +412,11 @@
     };
 
     function hideLoader() {
-        document.getElementById('loader').style.display = 'none';
+        const loader = document.getElementById('loader');
+        loader.classList.add('fade-out');
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 500); // Match this duration with the CSS transition duration
     }
 </script>
 

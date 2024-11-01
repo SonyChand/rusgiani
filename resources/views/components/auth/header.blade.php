@@ -75,7 +75,14 @@
             background-color: black;
             vertical-align: middle;
             color: #fff;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 1;
 
+        }
+
+        #loader.fade-out {
+            opacity: 0;
+            pointer-events: none;
         }
 
         #loader img {

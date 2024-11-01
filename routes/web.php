@@ -11,7 +11,14 @@ use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\Letters\LetterController;
 use App\Http\Controllers\Letters\IncomingLetterController;
 use App\Http\Controllers\Letters\OutgoingLetterController;
+use App\Http\Controllers\Tour\TourDestinationController;
+use App\Http\Controllers\Tour\TourPackageController;
 
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home.index');
+
+Route::get('/wisata', [HomeController::class, 'indexTrip'])
+    ->name('home.trip');
 
 Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback'])->name('google.callback');
@@ -22,6 +29,11 @@ Route::group(['middleware' => ['auth', 'verified',], 'prefix' => 'panel'], funct
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('profiles', ProfileController::class);
+    // Route::get('users/scan/{code}', [UserController::class, 'scan'])->name('users.scan');
+    Route::delete('/tour-destinations/bulkDestroy', [TourDestinationController::class, 'bulkDestroy'])->name('tour-destinations.bulkDestroy');
+    Route::get('/tour-destinations/download/{id}', [TourDestinationController::class, 'download'])->name('tour-destinations.download');
+    Route::resource('tour-destinations', TourDestinationController::class);
+    Route::resource('tour-packages', TourPackageController::class);
 });
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'management'], function () {

@@ -366,6 +366,7 @@
 <script src="{{ asset('assets') }}/vendors/popper/popper.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/bootstrap/bootstrap.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/anchorjs/anchor.min.js"></script>
+<script src="{{ asset('assets') }}/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/is/is.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/fontawesome/all.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/lodash/lodash.min.js"></script>
@@ -381,6 +382,7 @@
 <script src="{{ asset('assets') }}/assets/js/echarts-example.js"></script>
 <script src="{{ asset('assets') }}/assets/js/projectmanagement-dashboard.js"></script>
 <script src="{{ asset('assets') }}/vendors/dhtmlx-gantt/dhtmlxgantt.js"></script>
+<script src="{{ asset('assets') }}/vendors/tinymce/tinymce.min.js"></script>
 
 
 <div id="loader" data-wordLoad="{{ config('app.name', 'Sistem') . ' - ' . $subtitle }}">
@@ -402,6 +404,8 @@
 <script>
     // Function to show the loader
     function showLoader() {
+        event.preventDefault();
+        event.stopPropagation();
         // Get the form element
         const form = document.querySelector('.needs-validation');
         const loader = document.getElementById('loader');
@@ -416,17 +420,25 @@
             form.classList.add('was-validated');
         } else {
             // If the form is valid, show the loader
-            document.getElementById('loader').style.display = 'block';
+            loader.style.display = 'block';
             setTimeout(() => {
                 loader.classList.add('fade-in');
             }, 50);
+
+            // Submit the form
+            form.submit();
         }
     }
 
     document.onreadystatechange = function() {
         if (document.readyState === "complete") {
-            document.querySelector("#loader").style.display = "none";
-            document.querySelector("body").style.visibility = "visible";
+            const loader = document.querySelector("#loader");
+            loader.classList.add('fade-out');
+            setTimeout(() => {
+                loader.style.display = "none";
+                document.querySelector("body").style.visibility = "visible";
+            }, 500); // Match this duration with the CSS transition duration
+
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true,
@@ -460,7 +472,11 @@
     };
 
     function hideLoader() {
-        document.getElementById('loader').style.display = 'none';
+        const loader = document.getElementById('loader');
+        loader.classList.add('fade-out');
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 500); // Match this duration with the CSS transition duration
     }
 </script>
 

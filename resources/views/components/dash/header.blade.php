@@ -36,7 +36,7 @@
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
-
+    <link href="{{ asset('assets') }}/vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="{{ asset('assets') }}/vendors/choices/choices.min.css" rel="stylesheet">
     <link href="{{ asset('assets') }}/vendors/flatpickr/flatpickr.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,12 +77,24 @@
             top: 0px;
             width: 100%;
             height: 100%;
-            z-index: 9999;
+            z-index: 99999;
             text-align: center;
             background-color: black;
             vertical-align: middle;
             color: #fff;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 1;
 
+        }
+
+        #loader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #loader.fade-in {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         #loader img {
@@ -91,7 +103,7 @@
             right: 50%;
             transform: translate(50%, -50%);
             width: 8%;
-            z-index: 9999;
+            z-index: 99999;
             text-align: center;
             vertical-align: middle;
             color: #fff;
@@ -108,7 +120,7 @@
             display: table-cell;
             text-align: center;
             vertical-align: middle;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
         }
 
         .waviy {
@@ -157,7 +169,7 @@
                 right: 50%;
                 transform: translate(50%, -50%);
                 width: 20%;
-                z-index: 9999;
+                z-index: 99999;
                 text-align: center;
                 vertical-align: middle;
                 color: #fff;

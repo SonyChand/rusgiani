@@ -22,26 +22,17 @@ class TourDestinationController extends Controller
     use ValidatesRequests;
     use LogsActivity;
 
-
-    function __construct()
-    {
-        $this->middleware('permission:tour_destination-list|tour_destination-create|tour_destination-edit|tour_destination-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:tour_destination-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:tour_destination-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:tour_destination-delete', ['only' => ['destroy', 'bulkDestroy']]);
-        $this->middleware('permission:tour_destination-download', ['only' => ['download', 'index']]);
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request): View
+    public function wisata(Request $request): View
     {
         $title = 'Destinasi Wisata';
-        $destinations = TourDestination::orderBy('id', 'DESC')->get();
+        $tour = TourDestination::firstOrFail();
 
-        return view('dashboard.tour.destinations.index', compact('destinations', 'title'));
+        return view('home.tour.destinations.detail', compact('tour', 'title'));
     }
 
     /**

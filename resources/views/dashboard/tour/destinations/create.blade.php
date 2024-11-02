@@ -11,21 +11,14 @@
                 <div class="col-sm-12 col-md-12">
                     <div class="form-floating">
                         <input class="form-control" id="name" type="text" name="name"
-                            placeholder="Nama Destinasi" required />
-                        <label for="name">Nama Destinasi</label>
+                            placeholder="Nama Tempat Wisata" required />
+                        <label for="name">Nama Tempat Wisata</label>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <label for="description">Deskripsi</label>
                     <textarea class="form-control tinymce" data-tinymce="{}" id="description" name="description" placeholder="Deskripsi"
-                        style="height: 250px" required></textarea>
-                </div>
-                <div class="col-sm-12 col-md-12">
-                    <div class="form-floating">
-                        <input class="form-control" id="price" type="number" step="0.01" name="price"
-                            placeholder="Harga" required />
-                        <label for="price">Harga</label>
-                    </div>
+                        style="height: 250px"></textarea>
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <div class="form-floating">
@@ -39,6 +32,49 @@
                         <input class="form-control" id="maps" type="text" name="maps"
                             placeholder="Google Maps" required />
                         <label for="maps">Google Maps</label>
+                    </div>
+                </div>
+                <div class="col-12 gy-6">
+                    @php
+                        $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', "Jum'at", 'Sabtu', 'Minggu'];
+                    @endphp
+                    <div class="form-floating form-floating-advance-select">
+                        <label>Hari Beroperasi</label>
+                        <select class="form-select" id="organizerMultiple" data-choices="data-choices"
+                            multiple="multiple" data-options='{"removeItemButton":true,"placeholder":true}' required
+                            name="operating_days[]" required>
+                            <option hidden value="">Pilih Hari</option>
+                            @foreach ($hari as $row)
+                                <option value="{{ $row }}">{{ $row }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-floating">
+                        <input class="form-control" id="opening_hours" type="time" name="opening_hours"
+                            placeholder="Jam Buka" required />
+                        <label for="opening_hours">Jam Buka</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-floating">
+                        <input class="form-control" id="closing_hours" type="time" name="closing_hours"
+                            placeholder="Jam Tutup" required />
+                        <label for="closing_hours">Jam Tutup</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating form-floating-advance-select">
+                        <label>Status Wisata</label>
+                        <select class="form-select" id="status" required name="status">
+                            <option hidden value="">Pilih Status Wisata</option>
+                            <option value="buka">Buka</option>
+                            <option value="tutup">Tutup</option>
+                            <option value="sementara_tutup">
+                                Sementara Tutup
+                            </option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12">

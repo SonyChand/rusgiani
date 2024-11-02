@@ -16,6 +16,10 @@ class TourPackage extends Model
         'price',
         'duration',
         'inclusions',
+        'availability',
+        'cancellation_policy',
+        'refund_policy',
+        'status',
     ];
 
     public function destination()

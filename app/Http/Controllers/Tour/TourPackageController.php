@@ -2,28 +2,34 @@
 
 namespace App\Http\Controllers\Tour;
 
-use App\Models\User;
 use Illuminate\View\View;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use App\Traits\LogsActivity;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Models\Tour\TourDestination;
 use App\Models\Tour\TourPackage;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class TourPackageController extends Controller
 {
     use ValidatesRequests;
+    use LogsActivity;
+
 
     function __construct()
     {
         $this->middleware('permission:tour_package-list|tour_package-create|tour_package-edit|tour_package-delete', ['only' => ['index', 'store']]);
         $this->middleware('permission:tour_package-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:tour_package-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:tour_package-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:tour_package-delete', ['only' => ['destroy', 'bulkDestroy']]);
+        $this->middleware('permission:tour_package-download', ['only' => ['download', 'index']]);
     }
     /**
      * Display a listing of the resource.
@@ -33,9 +39,9 @@ class TourPackageController extends Controller
     public function index(Request $request): View
     {
         $title = 'Paket Wisata';
-        $users = TourPackage::orderBy('id', 'DESC')->get();
+        $packages = TourPackage::orderBy('id', 'DESC')->get();
 
-        return view('dashboard.tour.tourpackage.index', compact('users', 'title'));
+        return view('dashboard.tour.packages.index', compact('packages', 'title'));
     }
 
     /**
@@ -45,10 +51,10 @@ class TourPackageController extends Controller
      */
     public function create(): View
     {
-        $roles = Role::pluck('name', 'name')->all();
+        $destinations = TourDestination::all();
         $title = 'Tambah Paket Wisata';
 
-        return view('dashboard.users.create', compact('roles', 'title'));
+        return view('dashboard.tour.packages.create', compact('destinations', 'title'));
     }
 
     /**
@@ -59,23 +65,27 @@ class TourPackageController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $this->validate($request, [
+        $validatedData = $this->validate($request, [
+            'destination_id' => 'required',
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'description' => 'nullable',
+            'price' => 'required',
+            'duration' => 'required',
+            'inclusions' => 'nullable',
+            'availability' => 'required|in:terbatas,tidak_terbatas',
+            'cancellation_policy' => 'required|in:ya,tidak',
+            'refund_policy' => 'required|in:ya,tidak',
+            'status' => 'required|in:aktif,nonaktif,habis',
         ]);
 
 
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-        $input['email_verified_at'] = now()->toDateTimeString();
+        $tour = TourPackage::create($validatedData);
 
-        $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+        $description = 'Pengguna ' . $request->user()->name . ' menambahkan paket wisata dengan nama paket wisata: ' . $tour->name;
+        $this->logActivity('tour_packages', $request->user(), $tour->id, $description);
 
-        return redirect()->route('users.index')
-            ->with('success', 'User created successfully');
+        return redirect()->route('tour-packages.index')
+            ->with('success', 'Paket Wisata berhasil dibuat');
     }
 
     /**
@@ -86,9 +96,9 @@ class TourPackageController extends Controller
      */
     public function show($id): View
     {
-        $user = User::find($id);
+        $tour_package = TourPackage::find($id);
 
-        return view('dashboard.users.show', compact('user'));
+        return view('dashboard.tour.packages.show', compact('tour_package'));
     }
 
     /**
@@ -99,12 +109,11 @@ class TourPackageController extends Controller
      */
     public function edit($id): View
     {
-        $title = 'Edit User';
-        $user = User::find($id);
-        $roles = Role::pluck('name', 'name')->all();
-        $userRole = $user->roles->pluck('name', 'name')->all();
+        $title = 'Edit Paket Wisata';
+        $tour = TourPackage::findOrFail($id);
+        $packages = TourPackage::where('destination_id', $id)->get();
 
-        return view('dashboard.users.edit', compact('user', 'roles', 'userRole', 'title'));
+        return view('dashboard.tour.packages.edit', compact('tour',  'title', 'packages'));
     }
 
     /**
@@ -116,27 +125,28 @@ class TourPackageController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        $this->validate($request, [
+        $validatedData = $this->validate($request, [
+            'destination_id' => 'required',
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'roles' => 'required'
+            'description' => 'nullable',
+            'price' => 'required',
+            'duration' => 'required',
+            'inclusions' => 'nullable',
+            'availability' => 'required|in:terbatas,tidak_terbatas',
+            'cancellation_policy' => 'required|in:ya,tidak',
+            'refund_policy' => 'required|in:ya,tidak',
+            'status' => 'required|in:aktif,nonaktif,habis',
         ]);
 
-        $input = $request->all();
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = Arr::except($input, array('password'));
-        }
 
-        $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
+        $tour_package = TourPackage::find($id);
+        $tour_package->update($validatedData);
 
-        $user->assignRole($request->input('roles'));
+        $description = 'Pengguna ' . $request->user()->name . ' mengubah paket wisata dengan nama paket wisata: ' . $tour_package->name;
+        $this->logActivity('tour_packages', $request->user(), $tour_package->id, $description);
 
-        return redirect()->route('users.index')
-            ->with('success', 'User updated successfully');
+        return redirect()->route('tour-packages.index')
+            ->with('success', 'Paket Wisata berhasil diubah');
     }
 
     /**
@@ -147,8 +157,67 @@ class TourPackageController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        User::find($id)->delete();
-        return redirect()->route('users.index')
-            ->with('success', 'User deleted successfully');
+        $tour = TourPackage::findOrFail($id);
+        if ($tour) {
+            $existingImages = json_decode($tour->images, true);
+            if ($existingImages) {
+                foreach ($existingImages as $existingImage) {
+                    if (Storage::disk('public')->exists($existingImage)) {
+                        Storage::disk('public')->delete($existingImage);
+                        $directory = dirname(storage_path('app/public/' . $existingImage));
+                        if (is_dir($directory) && count(scandir($directory)) == 2) {
+                            rmdir($directory);
+                        }
+                    }
+                }
+            }
+            $description = 'Pengguna ' . Auth::user()->name  . ' menghapus data paket wisata pada nama paket wisata: ' . $tour->name;
+            $this->logActivity('tour_packages', Auth::user(), $tour->id, $description);
+            $tour->delete();
+
+            return redirect()->route('tour-packages.index')
+                ->with('success', 'Paket Wisata berhasil dihapus');
+        } else {
+            return redirect()->route('tour-packages.index')
+                ->with('error', 'Paket Wisata tidak ditemukan');
+        }
+    }
+
+    public function bulkDestroy(Request $request): RedirectResponse
+    {
+        $destinationIds = explode(',', $request->input('destinationIds', ''));
+        if (!empty($destinationIds)) {
+            foreach ($destinationIds as $tourId) {
+                $tour = TourPackage::findOrFail($tourId);
+                if ($tour) {
+                    $existingImages = json_decode($tour->images, true);
+                    if ($existingImages) {
+                        foreach ($existingImages as $existingImage) {
+                            if (Storage::disk('public')->exists($existingImage)) {
+                                Storage::disk('public')->delete($existingImage);
+                                $directory = dirname(storage_path('app/public/' . $existingImage));
+                                if (is_dir($directory) && count(scandir($directory)) == 2) {
+                                    rmdir($directory);
+                                }
+                            }
+                        }
+                    }
+
+                    $description = 'Pengguna ' . Auth::user()->name  . ' menghapus data paket wisata pada nama paket wisata: ' . $tour->name;
+                    $this->logActivity('tour_packages', Auth::user(), $tour->id, $description);
+                }
+            }
+            TourPackage::whereIn('id', $destinationIds)->delete();
+            return redirect()->route('tour-packages.index')->with('success', 'Paket Wisata berhasil dihapus');
+        }
+        return redirect()->route('tour-packages.index')->with('error', 'Tidak ada paket wisata yang dipilih');
+    }
+
+    public function download($id)
+    {
+        $tour = TourPackage::findOrFail($id);
+        $description = 'Pengguna ' . Auth::user()->name  . ' mengunduh data paket wisata pada nama paket wisata: ' . $tour->name;
+        $this->logActivity('tour_packages', Auth::user(), $tour->id, $description);
+        return Storage::disk('public')->download($tour->file_path);
     }
 }

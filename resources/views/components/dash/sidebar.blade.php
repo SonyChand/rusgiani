@@ -137,7 +137,7 @@
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link {{ request()->routeIs('tour-packagesw.*') ? 'active' : '' }}"
+                                                <a class="nav-link {{ request()->routeIs('tour-packages.*') ? 'active' : '' }}"
                                                     href="{{ route('tour-packages.index') }}">
                                                     <div class="d-flex align-items-center"><span
                                                             class="nav-link-text">Paket</span>

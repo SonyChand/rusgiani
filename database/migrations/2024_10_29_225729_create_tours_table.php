@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('location');
             $table->text('maps')->nullable();
-            $table->enum('operating_days', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'])->nullable();
+            $table->longText('operating_days')->nullable();
             $table->time('opening_hours')->nullable();
             $table->time('closing_hours')->nullable();
             $table->longText('images')->nullable();
@@ -28,14 +28,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('destination_id');
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
             $table->integer('duration');
-            $table->text('inclusions');
-            $table->enum('status', ['aktif', 'nonaktif', 'habis'])->default('aktif');
+            $table->text('inclusions')->nullable();
             $table->enum('availability', ['terbatas', 'tidak_terbatas'])->default('terbatas');
             $table->enum('cancellation_policy', ['ya', 'tidak'])->default('tidak');
             $table->enum('refund_policy', ['ya', 'tidak'])->default('tidak');
+            $table->enum('status', ['aktif', 'nonaktif', 'habis'])->default('aktif');
             $table->timestamps();
 
             $table->foreign('destination_id')->references('id')->on('tour_destinations')->onDelete('cascade');

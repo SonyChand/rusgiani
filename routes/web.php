@@ -30,9 +30,14 @@ Route::group(['middleware' => ['auth', 'verified',], 'prefix' => 'panel'], funct
     Route::resource('users', UserController::class);
     Route::resource('profiles', ProfileController::class);
     // Route::get('users/scan/{code}', [UserController::class, 'scan'])->name('users.scan');
+});
+
+Route::group(['middleware' => ['auth', 'verified',], 'prefix' => 'tour'], function () {
     Route::delete('/tour-destinations/bulkDestroy', [TourDestinationController::class, 'bulkDestroy'])->name('tour-destinations.bulkDestroy');
     Route::get('/tour-destinations/download/{id}', [TourDestinationController::class, 'download'])->name('tour-destinations.download');
     Route::resource('tour-destinations', TourDestinationController::class);
+    Route::delete('/tour-packages/bulkDestroy', [TourDestinationController::class, 'bulkDestroy'])->name('tour-packages.bulkDestroy');
+    Route::get('/tour-packages/download/{id}', [TourDestinationController::class, 'download'])->name('tour-packages.download');
     Route::resource('tour-packages', TourPackageController::class);
 });
 

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-xl-9">
             <form class="row g-3 mb-6 needs-validation" novalidate="" method="POST" action="{{ route('users.store') }}"
-                onsubmit="showLoader()">
+                onsubmit="showLoader(event)">
                 @csrf
                 <div class="col-sm-12 col-md-12">
                     <div class="form-floating">

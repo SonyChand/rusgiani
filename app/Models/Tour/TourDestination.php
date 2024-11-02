@@ -14,11 +14,16 @@ class TourDestination extends Model
         'description',
         'location',
         'maps',
+        'operating_days',
+        'opening_hours',
+        'closing_hours',
         'images',
+        'status',
     ];
 
     protected $casts = [
         'images' => 'array',
+        'operating_days' => 'array',
     ];
 
     public function packages()

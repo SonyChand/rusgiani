@@ -2,7 +2,7 @@
     @slot('title')
         {{ $title }}
     @endslot
-    <h2 class="mb-4">Edit destinasi wisata</h2>
+    <h2 class="mb-4">Edit paket wisata</h2>
     <div class="row">
         <div class="col-xl-9">
             <form class="row g-3 mb-6 needs-validation" novalidate="" method="POST"
@@ -13,8 +13,8 @@
                 <div class="col-sm-12 col-md-12">
                     <div class="form-floating">
                         <input class="form-control" id="name" type="text" name="name"
-                            placeholder="Nama Destinasi" required value="{{ $tour->name }}" />
-                        <label for="name">Nama Destinasi</label>
+                            placeholder="Nama Paket" required value="{{ $tour->name }}" />
+                        <label for="name">Nama Paket</label>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12">

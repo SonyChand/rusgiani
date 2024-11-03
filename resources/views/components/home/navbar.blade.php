@@ -52,8 +52,8 @@
                         class="nav-link {{ request()->routeIs('home.index') ? 'active' : '' }}"
                         href="{{ route('home.index') }}">Beranda</a></li>
                 <li class="nav-item border-bottom border-translucent border-bottom-lg-0"><a
-                        class="nav-link {{ request()->routeIs('home.trip') ? 'active' : '' }}"
-                        href="{{ route('home.trip') }}">Destinasi Wisata</a></li>
+                        class="nav-link {{ request()->routeIs('tour.index') ? 'active' : '' }}"
+                        href="{{ route('tour.index') }}">Destinasi Wisata</a></li>
             </ul>
         </div>
     </nav>

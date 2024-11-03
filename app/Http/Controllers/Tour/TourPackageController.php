@@ -6,16 +6,13 @@ use Illuminate\View\View;
 use Illuminate\Support\Str;
 use App\Traits\LogsActivity;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use App\Models\Tour\TourPackage;
 use App\Http\Controllers\Controller;
 use App\Models\Tour\TourDestination;
-use App\Models\Tour\TourPackage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
 
 class TourPackageController extends Controller
 {
@@ -78,10 +75,12 @@ class TourPackageController extends Controller
             'status' => 'required|in:aktif,nonaktif,habis',
         ]);
 
+        $validatedData['uuid'] = Str::uuid()->toString();
+
 
         $tour = TourPackage::create($validatedData);
 
-        $description = 'Pengguna ' . $request->user()->name . ' menambahkan paket wisata dengan nama paket wisata: ' . $tour->name;
+        $description = 'Pengguna ' . $request->user()->name . ' menambahkan paket wisata dengan nama paket wisata: ' . $tour->name . ' pada wisata tujuan: ' . $tour->destination->name;
         $this->logActivity('tour_packages', $request->user(), $tour->id, $description);
 
         return redirect()->route('tour-packages.index')
@@ -110,10 +109,10 @@ class TourPackageController extends Controller
     public function edit($id): View
     {
         $title = 'Edit Paket Wisata';
-        $tour = TourPackage::findOrFail($id);
-        $packages = TourPackage::where('destination_id', $id)->get();
+        $package = TourPackage::findOrFail($id);
+        $destinations = TourDestination::all();
 
-        return view('dashboard.tour.packages.edit', compact('tour',  'title', 'packages'));
+        return view('dashboard.tour.packages.edit', compact('package',  'title', 'destinations'));
     }
 
     /**
@@ -139,10 +138,10 @@ class TourPackageController extends Controller
         ]);
 
 
-        $tour_package = TourPackage::find($id);
+        $tour_package = TourPackage::findOrFail($id);
         $tour_package->update($validatedData);
 
-        $description = 'Pengguna ' . $request->user()->name . ' mengubah paket wisata dengan nama paket wisata: ' . $tour_package->name;
+        $description = 'Pengguna ' . $request->user()->name . ' mengubah paket wisata dengan nama paket wisata: ' . $tour_package->name . ' pada wisata tujuan: ' . $tour_package->destination->name;
         $this->logActivity('tour_packages', $request->user(), $tour_package->id, $description);
 
         return redirect()->route('tour-packages.index')
@@ -185,29 +184,16 @@ class TourPackageController extends Controller
 
     public function bulkDestroy(Request $request): RedirectResponse
     {
-        $destinationIds = explode(',', $request->input('destinationIds', ''));
-        if (!empty($destinationIds)) {
-            foreach ($destinationIds as $tourId) {
+        $packageIds = explode(',', $request->input('packageIds', ''));
+        if (!empty($packageIds)) {
+            foreach ($packageIds as $tourId) {
                 $tour = TourPackage::findOrFail($tourId);
                 if ($tour) {
-                    $existingImages = json_decode($tour->images, true);
-                    if ($existingImages) {
-                        foreach ($existingImages as $existingImage) {
-                            if (Storage::disk('public')->exists($existingImage)) {
-                                Storage::disk('public')->delete($existingImage);
-                                $directory = dirname(storage_path('app/public/' . $existingImage));
-                                if (is_dir($directory) && count(scandir($directory)) == 2) {
-                                    rmdir($directory);
-                                }
-                            }
-                        }
-                    }
-
                     $description = 'Pengguna ' . Auth::user()->name  . ' menghapus data paket wisata pada nama paket wisata: ' . $tour->name;
                     $this->logActivity('tour_packages', Auth::user(), $tour->id, $description);
                 }
             }
-            TourPackage::whereIn('id', $destinationIds)->delete();
+            TourPackage::whereIn('id', $packageIds)->delete();
             return redirect()->route('tour-packages.index')->with('success', 'Paket Wisata berhasil dihapus');
         }
         return redirect()->route('tour-packages.index')->with('error', 'Tidak ada paket wisata yang dipilih');

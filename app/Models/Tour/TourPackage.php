@@ -12,6 +12,7 @@ class TourPackage extends Model
     protected $fillable = [
         'destination_id',
         'name',
+        'uuid',
         'description',
         'price',
         'duration',
@@ -24,6 +25,6 @@ class TourPackage extends Model
 
     public function destination()
     {
-        return $this->belongsTo(TourDestination::class);
+        return $this->belongsTo(TourDestination::class, 'destination_id', 'id');
     }
 }

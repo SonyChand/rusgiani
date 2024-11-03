@@ -366,7 +366,6 @@
 <script src="{{ asset('assets') }}/vendors/popper/popper.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/bootstrap/bootstrap.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/anchorjs/anchor.min.js"></script>
-<script src="{{ asset('assets') }}/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/is/is.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/fontawesome/all.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/lodash/lodash.min.js"></script>
@@ -374,16 +373,7 @@
 <script src="{{ asset('assets') }}/vendors/feather-icons/feather.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/dayjs/dayjs.min.js"></script>
 <script src="{{ asset('assets') }}/assets/js/phoenix.js"></script>
-<script src="{{ asset('assets') }}/vendors/choices/choices.min.js"></script>
-<script src="{{ asset('assets') }}/vendors/flatpickr/flatpickr.min.js"></script>
-<script src="{{ asset('assets') }}/vendors/tinymce/tinymce.min.js"></script>
-<script src="{{ asset('assets') }}/vendors/dropzone/dropzone-min.js"></script>
-<script src="{{ asset('assets') }}/vendors/echarts/echarts.min.js"></script>
-<script src="{{ asset('assets') }}/assets/js/echarts-example.js"></script>
-<script src="{{ asset('assets') }}/assets/js/projectmanagement-dashboard.js"></script>
-<script src="{{ asset('assets') }}/vendors/dhtmlx-gantt/dhtmlxgantt.js"></script>
-<script src="{{ asset('assets') }}/vendors/tinymce/tinymce.min.js"></script>
-
+@stack('js')
 
 <div id="loader" data-wordLoad="{{ config('app.name', 'Sistem') . ' - ' . $subtitle }}">
     <div class="waviy">

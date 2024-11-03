@@ -99,4 +99,11 @@
             </form>
         </div>
     </div>
+    @push('css')
+        <link href="{{ asset('assets') }}/vendors/choices/choices.min.css" rel="stylesheet" />
+    @endpush
+    @push('js')
+        <script src="{{ asset('assets') }}/vendors/choices/choices.min.js"></script>
+        <script src="{{ asset('assets') }}/vendors/tinymce/tinymce.min.js"></script>
+    @endpush
 </x-dash.layout>

@@ -4,7 +4,7 @@
     @endslot
     <h2 class="mb-4">Edit destinasi wisata</h2>
     <div class="row">
-        <div class="col-xl-9">
+        <div class="col-xl-8">
             <form class="row g-3 mb-6 needs-validation" novalidate="" method="POST"
                 action="{{ route('tour-destinations.update', $tour->id) }}" onsubmit="showLoader(event)"
                 enctype="multipart/form-data">
@@ -102,364 +102,79 @@
                 </div>
             </form>
         </div>
+        @if ($packages == true)
+            <div class="col-xl-4">
+
+                @if ($packages->isEmpty())
+                    <div class="alert alert-warning mb-5" role="alert">
+                        Belum ada paket wisata yang ditambahkan, silahkan tambahkan paket wisata terlebih dahulu. <a
+                            href="{{ route('tour-packages.create') }}" class="btn btn-sm btn-primary">Tambah Paket
+                            Wisata</a>
+                    </div>
+                @else
+                    <div class="accordion border-top mb-5" id="accordionExample">
+                        @foreach ($packages as $row)
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading{{ $loop->iteration }}">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapse{{ $loop->iteration }}"
+                                        aria-expanded="false" aria-controls="collapse{{ $loop->iteration }}">
+                                        Paket Wisata {{ $loop->iteration }} - {{ $row->name }}
+                                    </button>
+                                </h2>
+                                <div class="accordion-collapse collapse" id="collapse{{ $loop->iteration }}"
+                                    aria-labelledby="heading{{ $loop->iteration }}"
+                                    data-bs-parent="#accordionExample" style="">
+                                    <div class="accordion-body pt-0">
+                                        <p class="mb-2">Harga: Rp {{ number_format($row->price, 0, ',', '.') }}</p>
+                                        <p class="mb-2">Durasi: {{ $row->duration }} hari</p>
+                                        <p class="mb-2">Inklusi: {!! $row->inclusions !!}</p>
+                                        <p class="mb-2">Ketersediaan: {{ $row->availability }}</p>
+                                        <p class="mb-2">Kebijakan Pembatalan: {{ $row->cancellation_policy }}</p>
+                                        <p class="mb-2">Kebijakan Pengembalian Dana: {{ $row->refund_policy }}</p>
+                                        <p class="mb-2">Status: {{ $row->status }}</p>
+                                        <a href="{{ route('tour-packages.edit', $row->id) }}"
+                                            class="btn btn-sm btn-warning">Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <a href="{{ route('tour-packages.create') }}" class="btn btn-sm btn-primary mt-5">Tambah Paket
+                        Wisata</a>
+                @endif
+            </div>
+        @endif
     </div>
 
+    <div class="mb-9">
+        <div class="row g-3" id="gallery-masonry" data-sl-isotope='{"layoutMode":"packery","packery":{"gutter":0}}'>
 
-    <div class="mb-4">
-        <div class="tab-content" id="gallery-slider-tab-content">
-            <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab"
-                tabindex="0">
-                <div class="swiper-theme-container swiper-slider-gallery">
-                    <div class="swiper theme-slider"
-                        data-swiper='{"speed":500,"spaceBetween":16,"slidesPerView":"auto","simulateTouch":false,"centeredSlides":true,"initialSlide":1,"thumb":{"slidesPerView":4,"spaceBetween":8,"freeMode":true,"loop":true,"watchSlidesProgress":true,"watchSlidesVisibility":true,"grabCursor":true,"breakpoints":{"540":{"slidesPerView":7},"768":{"slidesPerView":8},"1200":{"slidesPerView":9}}}}'>
-                        <div class="swiper-wrapper align-items-center" id="gallery-slider-all">
-                            @foreach (json_decode($tour->images, true) as $img)
-                                <div
-                                    class="swiper-slide position-relative rounded-2 overflow-hidden landscape ecommerce">
-                                    <a href="{{ asset('storage/' . $img) }}" data-gallery="gallery-slider-all"> <img
-                                            class="w-100 h-100 object-fit-cover" src="{{ asset('storage/' . $img) }}"
-                                            alt="" /></a>
-                                    <div class="backdrop-faded d-flex justify-content-between p-5">
-                                        <div>
-                                            <h3 class="text-white mb-2">Gambar {{ $loop->iteration }}</h3>
-                                            <p class="mb-0 text-secondary-light">
-                                                {{ $tour->descripstion }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-
-
-                        </div>
-                    </div>
-                    <div class="swiper-nav">
-                        <div class="swiper-button-next"><span class="fas fa-chevron-right nav-icon"></span></div>
-                        <div class="swiper-button-prev"><span class="fas fa-chevron-left nav-icon"></span></div>
+            @foreach (json_decode($tour->images) as $image)
+                <div class="col-sm-6 col-md-8 col-xl-4 isotope-item">
+                    <div class="img-zoom-hover position-relative rounded-2 overflow-hidden"><a
+                            href="{{ asset('storage/' . $image) }}" data-gallery="gallery-masonry"><img
+                                class="rounded-2 w-100 h-100 object-fit-cover" src="{{ asset('storage/' . $image) }}"
+                                alt="" />
+                            <div class="backdrop-faded position-absolute w-100 bottom-0 start-0 p-3">
+                                <h4 class="text-white">Gambar {{ $loop->iteration }}</h4>
+                            </div>
+                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="ecommerce-tab-pane" role="tabpanel" aria-labelledby="ecommerce-tab"
-                tabindex="0">
-                <div class="swiper-theme-container swiper-slider-gallery">
-                    <div class="swiper theme-slider"
-                        data-swiper='{"speed":500,"spaceBetween":16,"slidesPerView":"auto","simulateTouch":false,"centeredSlides":true,"initialSlide":1,"thumb":{"slidesPerView":4,"spaceBetween":8,"freeMode":true,"loop":false,"watchSlidesProgress":true,"watchSlidesVisibility":true,"grabCursor":true,"breakpoints":{"540":{"slidesPerView":7},"768":{"slidesPerView":8},"1200":{"slidesPerView":9}}}}'>
-                        <div class="swiper-wrapper align-items-center" id="gallery-slider-ecommerce">
-                            @foreach (json_decode($tour->images, true) as $img)
-                                <div
-                                    class="swiper-slide position-relative rounded-2 overflow-hidden landscape ecommerce">
-                                    <a href="{{ asset('storage/' . $img) }}" data-gallery="gallery-slider-ecommerce">
-                                        <img class="w-100 h-100 object-fit-cover"
-                                            src="{{ asset('storage/' . $img) }}" alt="" /></a>
-                                    <div class="backdrop-faded d-flex justify-content-between p-5">
-                                        <div>
-                                            <h3 class="text-white mb-2">Nature</h3>
-                                            <p class="mb-0 text-secondary-light">Description text</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="swiper-nav">
-                        <div class="swiper-button-next"><span class="fas fa-chevron-right nav-icon"></span></div>
-                        <div class="swiper-button-prev"><span class="fas fa-chevron-left nav-icon"></span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="project-management-tab-pane" role="tabpanel"
-                aria-labelledby="project-management-tab" tabindex="0">
-                <div class="swiper-theme-container swiper-slider-gallery">
-                    <div class="swiper theme-slider"
-                        data-swiper='{"speed":500,"spaceBetween":16,"slidesPerView":"auto","simulateTouch":false,"centeredSlides":true,"initialSlide":1,"thumb":{"slidesPerView":4,"spaceBetween":8,"freeMode":true,"loop":false,"watchSlidesProgress":true,"watchSlidesVisibility":true,"grabCursor":true,"breakpoints":{"540":{"slidesPerView":7},"768":{"slidesPerView":8},"1200":{"slidesPerView":9}}}}'>
-                        <div class="swiper-wrapper align-items-center" id="gallery-slider-project-management">
-                            <div
-                                class="swiper-slide position-relative rounded-2 overflow-hidden square project-management">
-                                <a href="{{ asset('assets') }}/assets/img/gallery/103.png"
-                                    data-gallery="gallery-slider-project-management"> <img
-                                        class="w-100 h-100 object-fit-cover"
-                                        src="{{ asset('assets') }}/assets/img/gallery/103.png" alt="" /></a>
-                                <div class="backdrop-faded d-flex justify-content-between p-5">
-                                    <div>
-                                        <h3 class="text-white mb-2">Ear Buds</h3>
-                                        <p class="mb-0 text-secondary-light">Description text</p>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-1 dropdown-toggle dropdown-caret-none text-white"
-                                            type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                            aria-haspopup="true" aria-expanded="false"
-                                            data-bs-reference="parent"><span
-                                                class="fas fa-ellipsis-h"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
-                                                href="#!">Edit</a><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a><a class="dropdown-item"
-                                                href="#!">Download</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="swiper-slide position-relative rounded-2 overflow-hidden portrait project-management photography">
-                                <a href="{{ asset('assets') }}/assets/img/gallery/71.png"
-                                    data-gallery="gallery-slider-project-management"> <img
-                                        class="w-100 h-100 object-fit-cover"
-                                        src="{{ asset('assets') }}/assets/img/gallery/71.png" alt="" /></a>
-                                <div class="backdrop-faded d-flex justify-content-between p-5">
-                                    <div>
-                                        <h3 class="text-white mb-2">Sunset</h3>
-                                        <p class="mb-0 text-secondary-light">Description text</p>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-1 dropdown-toggle dropdown-caret-none text-white"
-                                            type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                            aria-haspopup="true" aria-expanded="false"
-                                            data-bs-reference="parent"><span
-                                                class="fas fa-ellipsis-h"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
-                                                href="#!">Edit</a><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a><a class="dropdown-item"
-                                                href="#!">Download</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="swiper-slide position-relative rounded-2 overflow-hidden landscape project-management">
-                                <a href="{{ asset('assets') }}/assets/img/gallery/96.mp4"
-                                    data-gallery="gallery-slider-project-management">
-                                    <div class="video-container position-relative h-100">
-                                        <video class="video w-100 h-100 object-fit-cover overflow-hidden rounded-2"
-                                            muted="muted" data-play-on-hover="data-play-on-hover"
-                                            poster="{{ asset('assets') }}/assets/img/gallery/96.png">
-                                            <source src="{{ asset('assets') }}/assets/img/gallery/96.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                        <div
-                                            class="video-icon position-absolute top-50 start-50 translate-middle bg-body-emphasis rounded-pill bg-opacity-50">
-                                            <span class="fa-solid fa-video text-body fs-9 fs-sm-8"></span>
-                                        </div>
-                                    </div><img class="d-none" src="{{ asset('assets') }}/assets/img/gallery/96.png"
-                                        alt="" />
-                                </a>
-                                <div class="backdrop-faded d-flex justify-content-between p-5">
-                                    <div>
-                                        <h3 class="text-white mb-2">Mountain Sunset</h3>
-                                        <p class="mb-0 text-secondary-light">Description text</p>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-1 dropdown-toggle dropdown-caret-none text-white"
-                                            type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                            aria-haspopup="true" aria-expanded="false"
-                                            data-bs-reference="parent"><span
-                                                class="fas fa-ellipsis-h"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
-                                                href="#!">Edit</a><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a><a class="dropdown-item"
-                                                href="#!">Download</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="swiper-slide position-relative rounded-2 overflow-hidden portrait project-management">
-                                <a href="{{ asset('assets') }}/assets/img/gallery/66.png"
-                                    data-gallery="gallery-slider-project-management"> <img
-                                        class="w-100 h-100 object-fit-cover"
-                                        src="{{ asset('assets') }}/assets/img/gallery/66.png" alt="" /></a>
-                                <div class="backdrop-faded d-flex justify-content-between p-5">
-                                    <div>
-                                        <h3 class="text-white mb-2">Desert Photography</h3>
-                                        <p class="mb-0 text-secondary-light">Description text</p>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-1 dropdown-toggle dropdown-caret-none text-white"
-                                            type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                            aria-haspopup="true" aria-expanded="false"
-                                            data-bs-reference="parent"><span
-                                                class="fas fa-ellipsis-h"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
-                                                href="#!">Edit</a><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a><a class="dropdown-item"
-                                                href="#!">Download</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="swiper-slide position-relative rounded-2 overflow-hidden square project-management">
-                                <a href="{{ asset('assets') }}/assets/img/gallery/42.png"
-                                    data-gallery="gallery-slider-project-management"> <img
-                                        class="w-100 h-100 object-fit-cover"
-                                        src="{{ asset('assets') }}/assets/img/gallery/42.png" alt="" /></a>
-                                <div class="backdrop-faded d-flex justify-content-between p-5">
-                                    <div>
-                                        <h3 class="text-white mb-2">London</h3>
-                                        <p class="mb-0 text-secondary-light">Description text</p>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-1 dropdown-toggle dropdown-caret-none text-white"
-                                            type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                            aria-haspopup="true" aria-expanded="false"
-                                            data-bs-reference="parent"><span
-                                                class="fas fa-ellipsis-h"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
-                                                href="#!">Edit</a><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a><a class="dropdown-item"
-                                                href="#!">Download</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-nav">
-                        <div class="swiper-button-next"><span class="fas fa-chevron-right nav-icon"></span></div>
-                        <div class="swiper-button-prev"><span class="fas fa-chevron-left nav-icon"></span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="photography-tab-pane" role="tabpanel" aria-labelledby="photography-tab"
-                tabindex="0">
-                <div class="swiper-theme-container swiper-slider-gallery">
-                    <div class="swiper theme-slider"
-                        data-swiper='{"speed":500,"spaceBetween":16,"slidesPerView":"auto","simulateTouch":false,"centeredSlides":true,"initialSlide":1,"thumb":{"slidesPerView":4,"spaceBetween":8,"freeMode":true,"loop":false,"watchSlidesProgress":true,"watchSlidesVisibility":true,"grabCursor":true,"breakpoints":{"540":{"slidesPerView":7},"768":{"slidesPerView":8},"1200":{"slidesPerView":9}}}}'>
-                        <div class="swiper-wrapper align-items-center" id="gallery-slider-photography">
-                            <div
-                                class="swiper-slide position-relative rounded-2 overflow-hidden landscape photography">
-                                <a href="{{ asset('assets') }}/assets/img/gallery/101.png"
-                                    data-gallery="gallery-slider-photography">
-                                    <img class="w-100 h-100 object-fit-cover"
-                                        src="{{ asset('assets') }}/assets/img/gallery/101.png" alt="" /></a>
-                                <div class="backdrop-faded d-flex justify-content-between p-5">
-                                    <div>
-                                        <h3 class="text-white mb-2">Pixel 4</h3>
-                                        <p class="mb-0 text-secondary-light">Description text</p>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-1 dropdown-toggle dropdown-caret-none text-white"
-                                            type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                            aria-haspopup="true" aria-expanded="false"
-                                            data-bs-reference="parent"><span
-                                                class="fas fa-ellipsis-h"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
-                                                href="#!">Edit</a><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a><a class="dropdown-item"
-                                                href="#!">Download</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="swiper-slide position-relative rounded-2 overflow-hidden landscape ecommerce photography">
-                                <a href="{{ asset('assets') }}/assets/img/gallery/104.png"
-                                    data-gallery="gallery-slider-photography">
-                                    <img class="w-100 h-100 object-fit-cover"
-                                        src="{{ asset('assets') }}/assets/img/gallery/104.png" alt="" /></a>
-                                <div class="backdrop-faded d-flex justify-content-between p-5">
-                                    <div>
-                                        <h3 class="text-white mb-2">Sunset Horizon</h3>
-                                        <p class="mb-0 text-secondary-light">Description text</p>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-1 dropdown-toggle dropdown-caret-none text-white"
-                                            type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                            aria-haspopup="true" aria-expanded="false"
-                                            data-bs-reference="parent"><span
-                                                class="fas fa-ellipsis-h"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
-                                                href="#!">Edit</a><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a><a class="dropdown-item"
-                                                href="#!">Download</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="swiper-slide position-relative rounded-2 overflow-hidden portrait project-management photography">
-                                <a href="{{ asset('assets') }}/assets/img/gallery/71.png"
-                                    data-gallery="gallery-slider-photography">
-                                    <img class="w-100 h-100 object-fit-cover"
-                                        src="{{ asset('assets') }}/assets/img/gallery/71.png" alt="" /></a>
-                                <div class="backdrop-faded d-flex justify-content-between p-5">
-                                    <div>
-                                        <h3 class="text-white mb-2">Sunset</h3>
-                                        <p class="mb-0 text-secondary-light">Description text</p>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-1 dropdown-toggle dropdown-caret-none text-white"
-                                            type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                            aria-haspopup="true" aria-expanded="false"
-                                            data-bs-reference="parent"><span
-                                                class="fas fa-ellipsis-h"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
-                                                href="#!">Edit</a><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a><a class="dropdown-item"
-                                                href="#!">Download</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="swiper-slide position-relative rounded-2 overflow-hidden landscape photography">
-                                <a href="{{ asset('assets') }}/assets/img/gallery/105.png"
-                                    data-gallery="gallery-slider-photography">
-                                    <img class="w-100 h-100 object-fit-cover"
-                                        src="{{ asset('assets') }}/assets/img/gallery/105.png" alt="" /></a>
-                                <div class="backdrop-faded d-flex justify-content-between p-5">
-                                    <div>
-                                        <h3 class="text-white mb-2">Ear Buds</h3>
-                                        <p class="mb-0 text-secondary-light">Description text</p>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-1 dropdown-toggle dropdown-caret-none text-white"
-                                            type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                            aria-haspopup="true" aria-expanded="false"
-                                            data-bs-reference="parent"><span
-                                                class="fas fa-ellipsis-h"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
-                                                href="#!">Edit</a><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a><a class="dropdown-item"
-                                                href="#!">Download</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="swiper-slide position-relative rounded-2 overflow-hidden square ecommerce photography">
-                                <a href="{{ asset('assets') }}/assets/img/gallery/97.mp4"
-                                    data-gallery="gallery-slider-photography">
-                                    <div class="video-container position-relative h-100">
-                                        <video class="video w-100 h-100 object-fit-cover overflow-hidden rounded-2"
-                                            muted="muted" data-play-on-hover="data-play-on-hover"
-                                            poster="{{ asset('assets') }}/assets/img/gallery/97.png">
-                                            <source src="{{ asset('assets') }}/assets/img/gallery/97.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                        <div
-                                            class="video-icon position-absolute top-50 start-50 translate-middle bg-body-emphasis rounded-pill bg-opacity-50">
-                                            <span class="fa-solid fa-video text-body fs-9 fs-sm-8"></span>
-                                        </div>
-                                    </div><img class="d-none" src="{{ asset('assets') }}/assets/img/gallery/97.png"
-                                        alt="" />
-                                </a>
-                                <div class="backdrop-faded d-flex justify-content-between p-5">
-                                    <div>
-                                        <h3 class="text-white mb-2">Bike Ride</h3>
-                                        <p class="mb-0 text-secondary-light">Description text</p>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-1 dropdown-toggle dropdown-caret-none text-white"
-                                            type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                            aria-haspopup="true" aria-expanded="false"
-                                            data-bs-reference="parent"><span
-                                                class="fas fa-ellipsis-h"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
-                                                href="#!">Edit</a><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a><a class="dropdown-item"
-                                                href="#!">Download</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-nav">
-                        <div class="swiper-button-next"><span class="fas fa-chevron-right nav-icon"></span></div>
-                        <div class="swiper-button-prev"><span class="fas fa-chevron-left nav-icon"></span></div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
-
+    @push('css')
+        <link href="{{ asset('assets') }}/vendors/choices/choices.min.css" rel="stylesheet" />
+        <link href="{{ asset('assets') }}/vendors/glightbox/glightbox.min.css" rel="stylesheet">
+    @endpush
+    @push('js')
+        <script src="{{ asset('assets') }}/vendors/choices/choices.min.js"></script>
+        <script src="{{ asset('assets') }}/vendors/tinymce/tinymce.min.js"></script>
+        <script src="{{ asset('assets') }}/vendors/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="{{ asset('assets') }}/vendors/isotope-packery/packery-mode.pkgd.min.js"></script>
+        <script src="{{ asset('assets') }}/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="{{ asset('assets') }}/vendors/glightbox/glightbox.min.js"></script>
+    @endpush
 </x-dash.layout>

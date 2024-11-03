@@ -11,6 +11,8 @@ class TourDestination extends Model
 
     protected $fillable = [
         'name',
+        'uuid',
+        'slug',
         'description',
         'location',
         'maps',
@@ -28,6 +30,6 @@ class TourDestination extends Model
 
     public function packages()
     {
-        return $this->hasMany(TourPackage::class);
+        return $this->hasMany(TourPackage::class, 'destination_id', 'id');
     }
 }

@@ -6,16 +6,18 @@ use Illuminate\View\View;
 use Illuminate\Support\Str;
 use App\Traits\LogsActivity;
 use Illuminate\Http\Request;
+use App\Models\Tour\TourPackage;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Tour\TourDestination;
-use App\Models\Tour\TourPackage;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Intervention\Image\ImageManager;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class TourDestinationController extends Controller
 {
@@ -66,7 +68,7 @@ class TourDestinationController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validatedData = $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:tour_destinations,name',
             'description' => 'nullable',
             'location' => 'required',
             'maps' => 'required',
@@ -76,6 +78,8 @@ class TourDestinationController extends Controller
             'closing_hours' => 'required',
             'status' => 'required|in:buka,tutup,sementara_tutup'
         ]);
+
+
 
         $imagePaths = [];
         if ($request->hasFile('images')) {
@@ -96,13 +100,16 @@ class TourDestinationController extends Controller
                 if (!file_exists($directory)) {
                     mkdir($directory, 0755, true);
                 }
-                $img = $img->toWebp(80)->save(storage_path('app/public/' . $filePath));
+                $img = $img->toWebp(100)->save(storage_path('app/public/' . $filePath));
 
                 $imagePaths[] = $filePath;
             }
         }
 
         $validatedData['images'] = json_encode($imagePaths);
+        $validatedData['slug'] = Str::slug($request->name);
+
+        $validatedData['uuid'] = Str::uuid()->toString();
 
         $tour = TourDestination::create($validatedData);
 
@@ -151,14 +158,14 @@ class TourDestinationController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $validatedData = $this->validate($request, [
-            'name' => 'required',
-            'description' => 'nullable',
+            'name' => 'required|unique:tour_destinations,name,' . $id,
+            'description' => 'nullable|',
             'location' => 'required',
             'maps' => 'required',
             'images.*' => 'nullable|image',
-            'operating_days' => 'required',
-            'opening_hours' => 'required',
-            'closing_hours' => 'required',
+            'operating_days' => 'required|array|min:1',
+            'opening_hours' => 'required|before:closing_hours|after:00:00',
+            'closing_hours' => 'required|after:opening_hours|before:23:59',
             'status' => 'required|in:buka,tutup,sementara_tutup'
         ]);
 
@@ -196,7 +203,7 @@ class TourDestinationController extends Controller
                 if (!file_exists($directory)) {
                     mkdir($directory, 0755, true);
                 }
-                $img = $img->toWebp(80)->save(storage_path('app/public/' . $filePath));
+                $img = $img->toWebp(100)->save(storage_path('app/public/' . $filePath));
 
                 $imagePaths[] = $filePath;
             }
@@ -204,6 +211,8 @@ class TourDestinationController extends Controller
             $validatedData['images'] = json_encode($imagePaths);
         }
 
+
+        $validatedData['slug'] = Str::slug($request->name);
 
         $tour_destination = TourDestination::find($id);
         $tour_destination->update($validatedData);

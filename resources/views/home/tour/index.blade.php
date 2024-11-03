@@ -49,206 +49,45 @@
 
         <div class="container-medium">
             <div class="row g-3">
-                <div class="col-md-6 col-xl-4">
-                    <div class="hoverbox rounded"><a
-                            href="{{ asset('assets') }}/apps/travel-agency/trip/trip-details.html"><img
-                                class="img-fluid" src="{{ asset('assets') }}/assets/img/trip/1.png" alt="" />
-                            <div class="backdrop-faded">
-                                <h3 class="text-underline fs-7 fs-lg-6 text-white fw-bold mb-2">Selfie with Snape</h3>
-                                <h5 class="text-secondary-lighter fw-normal mb-3"><span
-                                        class="fa-solid fa-map-marker-alt text-primary me-2"></span>Hogwarts</h5>
-                                <div class="d-sm-flex d-md-block d-lg-flex flex-between-center">
-                                    <h3 class="text-white fw-bold mb-3 mb-sm-0 mb-md-3 mb-lg-0 fs-7 fs-lg-6">$ 2,340
+                @foreach ($tour as $row)
+                    <div class="col-md-6 col-xl-4">
+                        <div class="hoverbox rounded">
+                            <a href="{{ route('tour.detail', $row->uuid) }}">
+                                @php
+                                    $images = json_decode($row->images, true);
+                                    $firstImage = $images[0] ?? 'default-image.png'; // Gambar default jika tidak ada gambar
+                                @endphp
+                                <img class="img-fluid" src="{{ asset('storage/' . $firstImage) }}"
+                                    alt="{{ $row->name }}" style="width: 100%; height: 250px; object-fit: cover;" />
+
+                                <div class="backdrop-faded">
+                                    <h3 class="text-underline fs-7 fs-lg-6 text-white fw-bold mb-2">
+                                        {{ $row->name }}
                                     </h3>
-                                    <div class="d-flex gap-3">
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-clock fs-9 me-2"></span>3 days</h5>
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-user fs-9 me-2"></span>From 1 to people</h5>
+                                    <h5 class="text-secondary-lighter fw-normal mb-3">
+                                        <span class="fa-solid fa-map-marker-alt text-primary me-2"></span>
+                                        {{ $row->location }}
+                                    </h5>
+                                    <div class="d-sm-flex d-md-block d-lg-flex flex-between-center">
+                                        <h3 class="text-white fw-bold mb-3 mb-sm-0 mb-md-3 mb-lg-0 fs-7 fs-lg-6">
+                                            Rp {{ number_format($row->packages->min('price'), 0, ',', '.') }}
+                                        </h3>
+                                        <div class="d-flex gap-3">
+                                            <h5 class="text-secondary-lighter fw-normal">
+                                                <span class="fa-solid fa-clock fs-9 me-2"></span>
+                                                {{ $row->packages->max('duration') }} hari
+                                            </h5>
+                                            <h5 class="text-secondary-lighter fw-normal">
+                                                <span class="fa-solid fa-user fs-9 me-2"></span>
+                                                Min 1
+                                            </h5>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a></div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="hoverbox rounded"><a
-                            href="{{ asset('assets') }}/apps/travel-agency/trip/trip-details.html"><img
-                                class="img-fluid" src="{{ asset('assets') }}/assets/img/trip/2.png" alt="" />
-                            <div class="backdrop-faded">
-                                <h3 class="text-underline fs-7 fs-lg-6 text-white fw-bold mb-2">Dine with Joker</h3>
-                                <h5 class="text-secondary-lighter fw-normal mb-3"><span
-                                        class="fa-solid fa-map-marker-alt text-primary me-2"></span>Gotham</h5>
-                                <div class="d-sm-flex d-md-block d-lg-flex flex-between-center">
-                                    <h3 class="text-white fw-bold mb-3 mb-sm-0 mb-md-3 mb-lg-0 fs-7 fs-lg-6">$ 4,540
-                                    </h3>
-                                    <div class="d-flex gap-3">
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-clock fs-9 me-2"></span>5 days</h5>
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-user fs-9 me-2"></span>From 1 to people</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </a></div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="hoverbox rounded"><a
-                            href="{{ asset('assets') }}/apps/travel-agency/trip/trip-details.html"><img
-                                class="img-fluid" src="{{ asset('assets') }}/assets/img/trip/3.png" alt="" />
-                            <div class="backdrop-faded">
-                                <h3 class="text-underline fs-7 fs-lg-6 text-white fw-bold mb-2">Ask Frodo to visit
-                                    Mordor</h3>
-                                <h5 class="text-secondary-lighter fw-normal mb-3"><span
-                                        class="fa-solid fa-map-marker-alt text-primary me-2"></span>The Shire</h5>
-                                <div class="d-sm-flex d-md-block d-lg-flex flex-between-center">
-                                    <h3 class="text-white fw-bold mb-3 mb-sm-0 mb-md-3 mb-lg-0 fs-7 fs-lg-6">$ 3,000
-                                    </h3>
-                                    <div class="d-flex gap-3">
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-clock fs-9 me-2"></span>2 days</h5>
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-user fs-9 me-2"></span>From 1 to people</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </a></div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="hoverbox rounded"><a
-                            href="{{ asset('assets') }}/apps/travel-agency/trip/trip-details.html"><img
-                                class="img-fluid" src="{{ asset('assets') }}/assets/img/trip/4.png" alt="" />
-                            <div class="backdrop-faded">
-                                <h3 class="text-underline fs-7 fs-lg-6 text-white fw-bold mb-2">Sit on the iron throne
-                                </h3>
-                                <h5 class="text-secondary-lighter fw-normal mb-3"><span
-                                        class="fa-solid fa-map-marker-alt text-primary me-2"></span>King’s Landing</h5>
-                                <div class="d-sm-flex d-md-block d-lg-flex flex-between-center">
-                                    <h3 class="text-white fw-bold mb-3 mb-sm-0 mb-md-3 mb-lg-0 fs-7 fs-lg-6">$ 1,500
-                                    </h3>
-                                    <div class="d-flex gap-3">
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-clock fs-9 me-2"></span>2 days</h5>
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-user fs-9 me-2"></span>From 1 to people</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </a></div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="hoverbox rounded"><a
-                            href="{{ asset('assets') }}/apps/travel-agency/trip/trip-details.html"><img
-                                class="img-fluid" src="{{ asset('assets') }}/assets/img/trip/5.png"
-                                alt="" />
-                            <div class="backdrop-faded">
-                                <h3 class="text-underline fs-7 fs-lg-6 text-white fw-bold mb-2">Day out with Luke
-                                    Skywalker</h3>
-                                <h5 class="text-secondary-lighter fw-normal mb-3"><span
-                                        class="fa-solid fa-map-marker-alt text-primary me-2"></span>Tatooine</h5>
-                                <div class="d-sm-flex d-md-block d-lg-flex flex-between-center">
-                                    <h3 class="text-white fw-bold mb-3 mb-sm-0 mb-md-3 mb-lg-0 fs-7 fs-lg-6">$ 2,899
-                                    </h3>
-                                    <div class="d-flex gap-3">
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-clock fs-9 me-2"></span>3 days</h5>
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-user fs-9 me-2"></span>From 1 to people</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </a></div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="hoverbox rounded"><a
-                            href="{{ asset('assets') }}/apps/travel-agency/trip/trip-details.html"><img
-                                class="img-fluid" src="{{ asset('assets') }}/assets/img/trip/6.png"
-                                alt="" />
-                            <div class="backdrop-faded">
-                                <h3 class="text-underline fs-7 fs-lg-6 text-white fw-bold mb-2">Feed the smelly cat
-                                </h3>
-                                <h5 class="text-secondary-lighter fw-normal mb-3"><span
-                                        class="fa-solid fa-map-marker-alt text-primary me-2"></span>New York</h5>
-                                <div class="d-sm-flex d-md-block d-lg-flex flex-between-center">
-                                    <h3 class="text-white fw-bold mb-3 mb-sm-0 mb-md-3 mb-lg-0 fs-7 fs-lg-6">$ 3,799
-                                    </h3>
-                                    <div class="d-flex gap-3">
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-clock fs-9 me-2"></span>4 days</h5>
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-user fs-9 me-2"></span>From 1 to people</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </a></div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="hoverbox rounded"><a
-                            href="{{ asset('assets') }}/apps/travel-agency/trip/trip-details.html"><img
-                                class="img-fluid" src="{{ asset('assets') }}/assets/img/trip/7.png"
-                                alt="" />
-                            <div class="backdrop-faded">
-                                <h3 class="text-underline fs-7 fs-lg-6 text-white fw-bold mb-2">Stormtrooper for a day
-                                </h3>
-                                <h5 class="text-secondary-lighter fw-normal mb-3"><span
-                                        class="fa-solid fa-map-marker-alt text-primary me-2"></span>The Death Star</h5>
-                                <div class="d-sm-flex d-md-block d-lg-flex flex-between-center">
-                                    <h3 class="text-white fw-bold mb-3 mb-sm-0 mb-md-3 mb-lg-0 fs-7 fs-lg-6">$ 2,899
-                                    </h3>
-                                    <div class="d-flex gap-3">
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-clock fs-9 me-2"></span>3 days</h5>
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-user fs-9 me-2"></span>From 1 to people</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </a></div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="hoverbox rounded"><a
-                            href="{{ asset('assets') }}/apps/travel-agency/trip/trip-details.html"><img
-                                class="img-fluid" src="{{ asset('assets') }}/assets/img/trip/8.png"
-                                alt="" />
-                            <div class="backdrop-faded">
-                                <h3 class="text-underline fs-7 fs-lg-6 text-white fw-bold mb-2">Walk where the king
-                                    walked</h3>
-                                <h5 class="text-secondary-lighter fw-normal mb-3"><span
-                                        class="fa-solid fa-map-marker-alt text-primary me-2"></span>Wakanda</h5>
-                                <div class="d-sm-flex d-md-block d-lg-flex flex-between-center">
-                                    <h3 class="text-white fw-bold mb-3 mb-sm-0 mb-md-3 mb-lg-0 fs-7 fs-lg-6">$ 5,999
-                                    </h3>
-                                    <div class="d-flex gap-3">
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-clock fs-9 me-2"></span>3 days</h5>
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-user fs-9 me-2"></span>From 1 to people</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </a></div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="hoverbox rounded"><a
-                            href="{{ asset('assets') }}/apps/travel-agency/trip/trip-details.html"><img
-                                class="img-fluid" src="{{ asset('assets') }}/assets/img/trip/9.png"
-                                alt="" />
-                            <div class="backdrop-faded">
-                                <h3 class="text-underline fs-7 fs-lg-6 text-white fw-bold mb-2">Petting the ghost</h3>
-                                <h5 class="text-secondary-lighter fw-normal mb-3"><span
-                                        class="fa-solid fa-map-marker-alt text-primary me-2"></span>Winterfell</h5>
-                                <div class="d-sm-flex d-md-block d-lg-flex flex-between-center">
-                                    <h3 class="text-white fw-bold mb-3 mb-sm-0 mb-md-3 mb-lg-0 fs-7 fs-lg-6">$ 2,999
-                                    </h3>
-                                    <div class="d-flex gap-3">
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-clock fs-9 me-2"></span>3 days</h5>
-                                        <h5 class="text-secondary-lighter fw-normal"> <span
-                                                class="fa-solid fa-user fs-9 me-2"></span>From 1 to people</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </a></div>
-                </div>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
             </div>
             <div class="mt-5 position-relative text-center">
                 <hr class="m-0 position-absolute top-50 translate-middle-y w-100">

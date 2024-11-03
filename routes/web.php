@@ -7,18 +7,22 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PrintController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Home\TourController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\Letters\LetterController;
+use App\Http\Controllers\Tour\TourPackageController;
+use App\Http\Controllers\Tour\TourDestinationController;
 use App\Http\Controllers\Letters\IncomingLetterController;
 use App\Http\Controllers\Letters\OutgoingLetterController;
-use App\Http\Controllers\Tour\TourDestinationController;
-use App\Http\Controllers\Tour\TourPackageController;
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home.index');
 
-Route::get('/wisata', [HomeController::class, 'indexTrip'])
-    ->name('home.trip');
+Route::get('/wisata', [TourController::class, 'index'])
+    ->name('tour.index');
+
+Route::get('/wisata/{uuid}', [TourController::class, 'wisata'])
+    ->name('tour.detail');
 
 Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback'])->name('google.callback');
@@ -36,8 +40,8 @@ Route::group(['middleware' => ['auth', 'verified',], 'prefix' => 'tour'], functi
     Route::delete('/tour-destinations/bulkDestroy', [TourDestinationController::class, 'bulkDestroy'])->name('tour-destinations.bulkDestroy');
     Route::get('/tour-destinations/download/{id}', [TourDestinationController::class, 'download'])->name('tour-destinations.download');
     Route::resource('tour-destinations', TourDestinationController::class);
-    Route::delete('/tour-packages/bulkDestroy', [TourDestinationController::class, 'bulkDestroy'])->name('tour-packages.bulkDestroy');
-    Route::get('/tour-packages/download/{id}', [TourDestinationController::class, 'download'])->name('tour-packages.download');
+    Route::delete('/tour-packages/bulkDestroy', [TourPackageController::class, 'bulkDestroy'])->name('tour-packages.bulkDestroy');
+    Route::get('/tour-packages/download/{id}', [TourPackageController::class, 'download'])->name('tour-packages.download');
     Route::resource('tour-packages', TourPackageController::class);
 });
 

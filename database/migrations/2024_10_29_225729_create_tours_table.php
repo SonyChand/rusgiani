@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('tour_destinations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('uuid')->unique();
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->text('description');
             $table->string('location');
             $table->text('maps')->nullable();
@@ -26,6 +28,7 @@ return new class extends Migration
         });
         Schema::create('tour_packages', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid')->unique();
             $table->unsignedBigInteger('destination_id');
             $table->string('name');
             $table->text('description')->nullable();

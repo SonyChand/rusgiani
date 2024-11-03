@@ -105,4 +105,7 @@
             </form>
         </div>
     </div>
+    @push('js')
+        <script src="{{ asset('assets') }}/vendors/tinymce/tinymce.min.js"></script>
+    @endpush
 </x-dash.layout>

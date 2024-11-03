@@ -129,7 +129,7 @@
                                         <ul class="nav collapse parent {{ request()->routeIs('tour*.*') ? 'show' : '' }}"
                                             data-bs-parent="#tour" id="nv-destinasi">
                                             <li class="nav-item">
-                                                <a class="nav-link {{ request()->routeIs('tour-destinations.index') ? 'active' : '' }}"
+                                                <a class="nav-link {{ request()->routeIs('tour-destinations.*') ? 'active' : '' }}"
                                                     href="{{ route('tour-destinations.index') }}">
                                                     <div class="d-flex align-items-center"><span
                                                             class="nav-link-text">Destinasi</span>

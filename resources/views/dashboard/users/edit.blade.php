@@ -17,8 +17,6 @@
                     </div>
                 </div>
 
-                <p>QR Code:</p>
-                <div>{!! $qrCode !!}</div>
                 <div class="col-sm-12 col-md-12">
                     <div class="form-floating">
                         <input class="form-control" id="email" type="text" name="email"

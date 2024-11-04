@@ -86,7 +86,8 @@
                         <div class="col-md-7">
                             <div class="img-zoom-hover position-relative h-100 rounded-3 overflow-hidden"><a
                                     href="#!"> <img class="w-100 h-md-100 object-fit-cover"
-                                        src="{{ asset('assets') }}/assets/img/gallery/37.png" alt="" height="220" /></a>
+                                        src="{{ asset('assets') }}/assets/img/gallery/37.png" alt=""
+                                        height="220" /></a>
                                 <div class="backdrop-faded"><a class="fw-bold fs-7 text-white" href="#!">Maui</a>
                                     <p class="mb-0 text-white fs-9">14 Hotels</p>
                                 </div>
@@ -97,8 +98,9 @@
                 <div class="col-lg-6">
                     <div class="d-flex flex-column gap-3 h-100">
                         <div class="img-zoom-hover position-relative h-100 rounded-3 overflow-hidden"><a href="#!">
-                                <img class="w-100 h-lg-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/38.png"
-                                    alt="" height="220" /></a>
+                                <img class="w-100 h-lg-100 object-fit-cover"
+                                    src="{{ asset('assets') }}/assets/img/gallery/38.png" alt=""
+                                    height="220" /></a>
                             <div class="backdrop-faded"><a class="fw-bold fs-7 text-white" href="#!">Bali,
                                     Indonesia</a>
                                 <p class="mb-0 text-white fs-9">51 Hotels</p>
@@ -146,8 +148,9 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide w-sm-auto"><a
                                 class="position-relative rounded-3 overflow-hidden d-block" href="#!"><img
-                                    class="w-100 w-sm-auto object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/39.png"
-                                    alt="" height="220" />
+                                    class="w-100 w-sm-auto object-fit-cover"
+                                    src="{{ asset('assets') }}/assets/img/gallery/39.png" alt=""
+                                    height="220" />
                                 <div class="img-backdrop-faded">
                                     <div class="image-reveal-content mb-3">
                                         <div class="d-flex align-items-center gap-2 mb-2"><span
@@ -160,15 +163,17 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center gap-2"><img
-                                            src="{{ asset('assets') }}/assets/img/country/thailand.png" alt="" />
+                                            src="{{ asset('assets') }}/assets/img/country/thailand.png"
+                                            alt="" />
                                         <h4 class="mb-0 text-white">Thailand</h4>
                                     </div>
                                 </div>
                             </a></div>
                         <div class="swiper-slide w-sm-auto"><a
                                 class="position-relative rounded-3 overflow-hidden d-block" href="#!"><img
-                                    class="w-100 w-sm-auto object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/40.png"
-                                    alt="" height="220" />
+                                    class="w-100 w-sm-auto object-fit-cover"
+                                    src="{{ asset('assets') }}/assets/img/gallery/40.png" alt=""
+                                    height="220" />
                                 <div class="img-backdrop-faded">
                                     <div class="image-reveal-content mb-3">
                                         <div class="d-flex align-items-center gap-2 mb-2"><span
@@ -181,15 +186,17 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center gap-2"><img
-                                            src="{{ asset('assets') }}/assets/img/country/switzerland.png" alt="" />
+                                            src="{{ asset('assets') }}/assets/img/country/switzerland.png"
+                                            alt="" />
                                         <h4 class="mb-0 text-white">Switzerland</h4>
                                     </div>
                                 </div>
                             </a></div>
                         <div class="swiper-slide w-sm-auto"><a
                                 class="position-relative rounded-3 overflow-hidden d-block" href="#!"><img
-                                    class="w-100 w-sm-auto object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/42.png"
-                                    alt="" height="220" />
+                                    class="w-100 w-sm-auto object-fit-cover"
+                                    src="{{ asset('assets') }}/assets/img/gallery/42.png" alt=""
+                                    height="220" />
                                 <div class="img-backdrop-faded">
                                     <div class="image-reveal-content mb-3">
                                         <div class="d-flex align-items-center gap-2 mb-2"><span
@@ -202,15 +209,17 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center gap-2"><img
-                                            src="{{ asset('assets') }}/assets/img/country/turkey.png" alt="" />
+                                            src="{{ asset('assets') }}/assets/img/country/turkey.png"
+                                            alt="" />
                                         <h4 class="mb-0 text-white">Turkey</h4>
                                     </div>
                                 </div>
                             </a></div>
                         <div class="swiper-slide w-sm-auto"><a
                                 class="position-relative rounded-3 overflow-hidden d-block" href="#!"><img
-                                    class="w-100 w-sm-auto object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/41.png"
-                                    alt="" height="220" />
+                                    class="w-100 w-sm-auto object-fit-cover"
+                                    src="{{ asset('assets') }}/assets/img/gallery/41.png" alt=""
+                                    height="220" />
                                 <div class="img-backdrop-faded">
                                     <div class="image-reveal-content mb-3">
                                         <div class="d-flex align-items-center gap-2 mb-2"><span
@@ -223,15 +232,17 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center gap-2"><img
-                                            src="{{ asset('assets') }}/assets/img/country/new-zealand.png" alt="" />
+                                            src="{{ asset('assets') }}/assets/img/country/new-zealand.png"
+                                            alt="" />
                                         <h4 class="mb-0 text-white">New Zealand</h4>
                                     </div>
                                 </div>
                             </a></div>
                         <div class="swiper-slide w-sm-auto"><a
                                 class="position-relative rounded-3 overflow-hidden d-block" href="#!"><img
-                                    class="w-100 w-sm-auto object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/43.png"
-                                    alt="" height="220" />
+                                    class="w-100 w-sm-auto object-fit-cover"
+                                    src="{{ asset('assets') }}/assets/img/gallery/43.png" alt=""
+                                    height="220" />
                                 <div class="img-backdrop-faded">
                                     <div class="image-reveal-content mb-3">
                                         <div class="d-flex align-items-center gap-2 mb-2"><span
@@ -244,15 +255,17 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center gap-2"><img
-                                            src="{{ asset('assets') }}/assets/img/country/sweden.png" alt="" />
+                                            src="{{ asset('assets') }}/assets/img/country/sweden.png"
+                                            alt="" />
                                         <h4 class="mb-0 text-white">Sweden</h4>
                                     </div>
                                 </div>
                             </a></div>
                         <div class="swiper-slide w-sm-auto"><a
                                 class="position-relative rounded-3 overflow-hidden d-block" href="#!"><img
-                                    class="w-100 w-sm-auto object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/44.png"
-                                    alt="" height="220" />
+                                    class="w-100 w-sm-auto object-fit-cover"
+                                    src="{{ asset('assets') }}/assets/img/gallery/44.png" alt=""
+                                    height="220" />
                                 <div class="img-backdrop-faded">
                                     <div class="image-reveal-content mb-3">
                                         <div class="d-flex align-items-center gap-2 mb-2"><span
@@ -265,15 +278,17 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center gap-2"><img
-                                            src="{{ asset('assets') }}/assets/img/country/turkey.png" alt="" />
+                                            src="{{ asset('assets') }}/assets/img/country/turkey.png"
+                                            alt="" />
                                         <h4 class="mb-0 text-white">Turkey</h4>
                                     </div>
                                 </div>
                             </a></div>
                         <div class="swiper-slide w-sm-auto"><a
                                 class="position-relative rounded-3 overflow-hidden d-block" href="#!"><img
-                                    class="w-100 w-sm-auto object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/58.png"
-                                    alt="" height="220" />
+                                    class="w-100 w-sm-auto object-fit-cover"
+                                    src="{{ asset('assets') }}/assets/img/gallery/58.png" alt=""
+                                    height="220" />
                                 <div class="img-backdrop-faded">
                                     <div class="image-reveal-content mb-3">
                                         <div class="d-flex align-items-center gap-2 mb-2"><span
@@ -286,15 +301,17 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center gap-2"><img
-                                            src="{{ asset('assets') }}/assets/img/country/vietnam.png" alt="" />
+                                            src="{{ asset('assets') }}/assets/img/country/vietnam.png"
+                                            alt="" />
                                         <h4 class="mb-0 text-white">Vietnam</h4>
                                     </div>
                                 </div>
                             </a></div>
                         <div class="swiper-slide w-sm-auto"><a
                                 class="position-relative rounded-3 overflow-hidden d-block" href="#!"><img
-                                    class="w-100 w-sm-auto object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/57.png"
-                                    alt="" height="220" />
+                                    class="w-100 w-sm-auto object-fit-cover"
+                                    src="{{ asset('assets') }}/assets/img/gallery/57.png" alt=""
+                                    height="220" />
                                 <div class="img-backdrop-faded">
                                     <div class="image-reveal-content mb-3">
                                         <div class="d-flex align-items-center gap-2 mb-2"><span
@@ -307,7 +324,8 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center gap-2"><img
-                                            src="{{ asset('assets') }}/assets/img/country/japan.png" alt="" />
+                                            src="{{ asset('assets') }}/assets/img/country/japan.png"
+                                            alt="" />
                                         <h4 class="mb-0 text-white">Japan</h4>
                                     </div>
                                 </div>
@@ -337,7 +355,8 @@
                         <div class="col-xl-4">
                             <div class="card card-img-shift border-0 mx-auto">
                                 <div class="rounded-3 overflow-hidden w-100 position-relative z-5"><img class="w-100"
-                                        src="{{ asset('assets') }}/assets/img/gallery/45.png" alt="" height="250" />
+                                        src="{{ asset('assets') }}/assets/img/gallery/45.png" alt=""
+                                        height="250" />
                                     <button class="btn btn-wish position-absolute top-0 end-0 mt-3 me-3"><span
                                             class="far fa-heart"></span></button>
                                 </div>
@@ -367,7 +386,8 @@
                         <div class="col-xl-4">
                             <div class="card card-img-shift border-0 mx-auto">
                                 <div class="rounded-3 overflow-hidden w-100 position-relative z-5"><img class="w-100"
-                                        src="{{ asset('assets') }}/assets/img/gallery/46.png" alt="" height="250" />
+                                        src="{{ asset('assets') }}/assets/img/gallery/46.png" alt=""
+                                        height="250" />
                                     <button class="btn btn-wish position-absolute top-0 end-0 mt-3 me-3"><span
                                             class="far fa-heart"></span></button>
                                 </div>
@@ -397,7 +417,8 @@
                         <div class="col-xl-4">
                             <div class="card card-img-shift border-0 mx-auto">
                                 <div class="rounded-3 overflow-hidden w-100 position-relative z-5"><img class="w-100"
-                                        src="{{ asset('assets') }}/assets/img/gallery/47.png" alt="" height="250" />
+                                        src="{{ asset('assets') }}/assets/img/gallery/47.png" alt=""
+                                        height="250" />
                                     <button class="btn btn-wish position-absolute top-0 end-0 mt-3 me-3"><span
                                             class="far fa-heart"></span></button>
                                 </div>
@@ -458,8 +479,9 @@
                         data-sl-isotope='{"layoutMode":"packery","filter":".tokyo"}'>
                         <div class="col-12 isotope-item w-100 tokyo">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/tokyo-1.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/tokyo-1.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -472,8 +494,9 @@
                         </div>
                         <div class="col-12 isotope-item w-100 tokyo">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/tokyo-2.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/tokyo-2.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -486,8 +509,9 @@
                         </div>
                         <div class="col-12 isotope-item w-100 tokyo">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/tokyo-3.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/tokyo-3.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -500,8 +524,9 @@
                         </div>
                         <div class="col-12 isotope-item w-100 bali">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/bali-1.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/bali-1.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -514,8 +539,9 @@
                         </div>
                         <div class="col-12 isotope-item w-100 bali">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/bali-2.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/bali-2.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -528,8 +554,9 @@
                         </div>
                         <div class="col-12 isotope-item w-100 bali">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/bali-3.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/bali-3.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -542,8 +569,9 @@
                         </div>
                         <div class="col-12 isotope-item w-100 sydney">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/sydney-1.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/sydney-1.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -556,8 +584,9 @@
                         </div>
                         <div class="col-12 isotope-item w-100 sydney">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/sydney-2.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/sydney-2.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -570,8 +599,9 @@
                         </div>
                         <div class="col-12 isotope-item w-100 sydney">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/sydney-3.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/sydney-3.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -584,8 +614,9 @@
                         </div>
                         <div class="col-12 isotope-item w-100 paris">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/paris-1.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/paris-1.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -598,8 +629,9 @@
                         </div>
                         <div class="col-12 isotope-item w-100 paris">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/paris-2.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/paris-2.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -612,8 +644,9 @@
                         </div>
                         <div class="col-12 isotope-item w-100 paris">
                             <div class="img-zoom-hover-lg rounded-2 overflow-hidden"><a href="#!"> <img
-                                        class="w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/paris-3.png"
-                                        alt="" height="220" /></a>
+                                        class="w-100 object-fit-cover"
+                                        src="{{ asset('assets') }}/assets/img/gallery/paris-3.png" alt=""
+                                        height="220" /></a>
                                 <button class="btn btn-wish position-absolute top-0 end-0 mt-4 me-4"><span
                                         class="far fa-heart"></span></button>
                                 <div class="backdrop-faded"><a class="text-white fw-bolder fs-7 stretched-link"
@@ -744,9 +777,11 @@
             <div class="row g-0 justify-content-center">
                 <div class="col-lg-10 col-xl-7">
                     <div class="d-md-flex align-items-center gap-7 text-center text-md-start"><img
-                            class="mb-4 mb-md-0 d-dark-none" src="{{ asset('assets') }}/assets/img/spot-illustrations/40.png"
-                            width="260" alt="" /><img class="mb-4 mb-md-0 d-light-none"
-                            src="{{ asset('assets') }}/assets/img/spot-illustrations/dark_40.png" width="260" alt="" />
+                            class="mb-4 mb-md-0 d-dark-none"
+                            src="{{ asset('assets') }}/assets/img/spot-illustrations/40.png" width="260"
+                            alt="" /><img class="mb-4 mb-md-0 d-light-none"
+                            src="{{ asset('assets') }}/assets/img/spot-illustrations/dark_40.png" width="260"
+                            alt="" />
                         <div class="flex-1">
                             <h3 class="mb-0">Get Updates & More</h3>
                             <p class="mb-4 text-body-tertiary">Subscribe to our newsletter to stay updated.</p>
@@ -777,8 +812,8 @@
             <div class="row g-3">
                 <div class="col-md-6 col-xl-4">
                     <div class="img-zoom-hover rounded-3 overflow-hidden position-relative"><a href="#!"><img
-                                class="latest-img w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/51.png"
-                                alt="" /></a>
+                                class="latest-img w-100 object-fit-cover"
+                                src="{{ asset('assets') }}/assets/img/gallery/51.png" alt="" /></a>
                         <div class="backdrop-faded"><a class="fw-semibold mb-0 text-secondary-lighter stretched-link"
                                 href="#!"><span
                                     class="fa-solid fa-location-dot text-secondary-lighter me-2"></span>Bali
@@ -787,8 +822,8 @@
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div class="img-zoom-hover rounded-3 overflow-hidden position-relative"><a href="#!"><img
-                                class="latest-img w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/52.png"
-                                alt="" /></a>
+                                class="latest-img w-100 object-fit-cover"
+                                src="{{ asset('assets') }}/assets/img/gallery/52.png" alt="" /></a>
                         <div class="backdrop-faded"><a class="fw-semibold mb-0 text-secondary-lighter stretched-link"
                                 href="#!"><span
                                     class="fa-solid fa-location-dot text-secondary-lighter me-2"></span>Barcelona</a>
@@ -797,8 +832,8 @@
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div class="img-zoom-hover rounded-3 overflow-hidden position-relative"><a href="#!"><img
-                                class="latest-img w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/53.png"
-                                alt="" /></a>
+                                class="latest-img w-100 object-fit-cover"
+                                src="{{ asset('assets') }}/assets/img/gallery/53.png" alt="" /></a>
                         <div class="backdrop-faded"><a class="fw-semibold mb-0 text-secondary-lighter stretched-link"
                                 href="#!"><span
                                     class="fa-solid fa-location-dot text-secondary-lighter me-2"></span>Bali
@@ -807,8 +842,8 @@
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div class="img-zoom-hover rounded-3 overflow-hidden position-relative"><a href="#!"><img
-                                class="latest-img w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/54.png"
-                                alt="" /></a>
+                                class="latest-img w-100 object-fit-cover"
+                                src="{{ asset('assets') }}/assets/img/gallery/54.png" alt="" /></a>
                         <div class="backdrop-faded"><a class="fw-semibold mb-0 text-secondary-lighter stretched-link"
                                 href="#!"><span
                                     class="fa-solid fa-location-dot text-secondary-lighter me-2"></span>Sydney</a>
@@ -817,8 +852,8 @@
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div class="img-zoom-hover rounded-3 overflow-hidden position-relative"><a href="#!"><img
-                                class="latest-img w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/55.png"
-                                alt="" /></a>
+                                class="latest-img w-100 object-fit-cover"
+                                src="{{ asset('assets') }}/assets/img/gallery/55.png" alt="" /></a>
                         <div class="backdrop-faded"><a class="fw-semibold mb-0 text-secondary-lighter stretched-link"
                                 href="#!"><span
                                     class="fa-solid fa-location-dot text-secondary-lighter me-2"></span>Great Barrier
@@ -827,8 +862,8 @@
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div class="img-zoom-hover rounded-3 overflow-hidden position-relative"><a href="#!"><img
-                                class="latest-img w-100 object-fit-cover" src="{{ asset('assets') }}/assets/img/gallery/56.png"
-                                alt="" /></a>
+                                class="latest-img w-100 object-fit-cover"
+                                src="{{ asset('assets') }}/assets/img/gallery/56.png" alt="" /></a>
                         <div class="backdrop-faded"><a class="fw-semibold mb-0 text-secondary-lighter stretched-link"
                                 href="#!"><span
                                     class="fa-solid fa-location-dot text-secondary-lighter me-2"></span>Grand
@@ -860,22 +895,25 @@
             <div class="row g-0 justify-content-center">
                 <div class="col-lg-10 col-xl-8 col-xxl-7">
                     <div class="d-md-flex align-items-center gap-5 text-center text-md-start"><img
-                            class="img-fluid d-dark-none" src="{{ asset('assets') }}/assets/img/spot-illustrations/i-phone.png"
-                            alt="" style="max-height: 540px" /><img class="img-fluid d-light-none"
+                            class="img-fluid d-dark-none"
+                            src="{{ asset('assets') }}/assets/img/spot-illustrations/i-phone.png" alt=""
+                            style="max-height: 540px" /><img class="img-fluid d-light-none"
                             src="{{ asset('assets') }}/assets/img/spot-illustrations/i-phone-dark.png" alt=""
                             style="max-height: 540px" />
                         <div class="mt-5 mt-md-0">
                             <div class="d-none d-md-block"><img class="d-dark-none"
                                     src="{{ asset('assets') }}/assets/img/spot-illustrations/41.png" alt=""
                                     width="200" /><img class="d-light-none"
-                                    src="{{ asset('assets') }}/assets/img/spot-illustrations/dark_41.png" alt=""
-                                    width="200" /></div>
+                                    src="{{ asset('assets') }}/assets/img/spot-illustrations/dark_41.png"
+                                    alt="" width="200" /></div>
                             <h3 class="fw-bolder mt-4">Get The App Now</h3>
                             <p class="text-body-tertiary">Designed to provide the best user experience possible to all
                                 our customers with activities ranging from anything thinkable to the unthinkables.</p><a
-                                class="me-2" href="#!"><img src="{{ asset('assets') }}/assets/img/generic/play-store.png"
-                                    alt="" height="32" /></a><a href="#!"><img
-                                    src="{{ asset('assets') }}/assets/img/generic/app-store.png" alt="" height="32" /></a>
+                                class="me-2" href="#!"><img
+                                    src="{{ asset('assets') }}/assets/img/generic/play-store.png" alt=""
+                                    height="32" /></a><a href="#!"><img
+                                    src="{{ asset('assets') }}/assets/img/generic/app-store.png" alt=""
+                                    height="32" /></a>
                         </div>
                     </div>
                 </div>

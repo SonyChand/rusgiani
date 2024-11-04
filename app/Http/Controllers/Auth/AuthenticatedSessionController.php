@@ -32,15 +32,21 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $credentials = $request->only('email', 'password');
+        $remember = $request->filled('remember');
 
-        $request->session()->regenerate();
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
 
-        $description = 'Pengguna ' . $request->user()->name . ' masuk sistem dari IP Address: ' . $request->ip();
-        $this->logActivity('login', $request->user(), null, $description);
+            $description = 'Pengguna ' . $request->user()->name . ' masuk sistem dari IP Address: ' . $request->ip();
+            $this->logActivity('login', $request->user(), null, $description);
 
+            return redirect()->intended(route('dashboard.index', absolute: false))->with('success', 'Login berhasil.');
+        }
 
-        return redirect()->intended(route('dashboard.index', absolute: false))->with('success', 'Login berhasil.');
+        throw ValidationException::withMessages([
+            'email' => [trans('auth.failed')],
+        ]);
     }
 
     /**
@@ -54,7 +60,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
 
         return redirect(route('login'))->with('success', 'Logout berhasil.');
     }

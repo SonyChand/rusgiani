@@ -237,8 +237,8 @@
                             <div class="mapouter">
                                 <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0"
                                         scrolling="no" marginheight="0" marginwidth="0"
-                                        src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q={{ $tour->maps }}&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
-                                        href="https://sprunkin.com">Sprunki Mods</a></div>
+                                        src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q={{ $tour->maps }}&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                                </div>
                                 <style>
                                     .mapouter {
                                         position: relative;
@@ -269,8 +269,9 @@
                                         <div class="p-2 rounded-2 bg-body-highlight mb-3 position-relative">
                                             <div class="tour-direction-line border-start border-dashed"></div>
                                             <a class="btn p-0 d-flex justify-content-between collapse-indicator"
-                                                data-bs-toggle="collapse" href="#collapsePicupPoint" role="button"
-                                                aria-expanded="true" aria-controls="collapsePicupPoint">
+                                                data-bs-toggle="collapse" href="#collapsePaket{{ $loop->iteration }}"
+                                                role="button" aria-expanded="true"
+                                                aria-controls="collapsePaket{{ $loop->iteration }}">
                                                 <div class="d-flex"><span
                                                         class="d-inline-flex flex-center rounded-pill border me-2"
                                                         style="min-width: 23px; height: 23px">
@@ -286,7 +287,7 @@
                                                 </div><span class="fa-solid fa-chevron-down toggle-icon"
                                                     style="width: 10px; height: 10px"></span>
                                             </a>
-                                            <div class="collapse" id="collapsePicupPoint">
+                                            <div class="collapse" id="collapsePaket{{ $loop->iteration }}">
                                                 <h6 class="fw-normal text-body-tertiary pt-3 ps-1"><span
                                                         class="fa-solid fa-clock text-body-quaternary me-2"></span>
                                                     {{ $package->duration }} hari

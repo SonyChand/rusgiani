@@ -5,7 +5,7 @@
 
     <div class="mb-9">
         <div id="touristDestinations"
-            data-list='{"valueNames":["id","name", "location", "maps"],"page":6,"pagination":true}'>
+            data-list='{"valueNames":["id","name", "hari", "jam", "status", "location", "maps", "package", "image"],"page":6,"pagination":true}'>
             <div class="row mb-4 gx-6 gy-3 align-items-center">
                 <div class="col-auto">
                     <h2 class="mb-0">Destinasi Wisata<span class="fw-normal text-body-tertiary ms-3"></span></h2>
@@ -63,6 +63,10 @@
                                 <th class="sort white-space-nowrap ps-0" scope="col" data-sort="location">Lokasi</th>
                                 <th class="sort white-space-nowrap ps-0" scope="col" data-sort="maps">Google Maps
                                 </th>
+                                <th class="sort white
+                                    -space-nowrap ps-0"
+                                    scope="col" data-sort="package">Paket Wisata</th>
+
                                 <th class="sort white-space-nowrap ps-0" scope="col" data-sort="image">Gambar</th>
                                 @canany(['tour_destination-edit', 'tour_destination-delete'])
                                     <th class="sort text-end" scope="col"></th>
@@ -126,6 +130,15 @@
                                                 }
                                             </style>
                                         </div>
+                                    </td>
+                                    <td
+                                        class="time white
+                                    -space-nowrap ps-0 package py-4">
+                                        @if (json_decode($destination->packages))
+                                            {{ count(json_decode($destination->packages)) }} paket
+                                        @else
+                                            Tidak ada paket
+                                        @endif
                                     </td>
                                     <td class="time white-space-nowrap ps-0 image py-4">
                                         @if (json_decode($destination->images))

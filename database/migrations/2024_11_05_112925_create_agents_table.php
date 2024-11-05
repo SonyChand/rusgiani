@@ -9,7 +9,8 @@ class CreateAgentsTable extends Migration
     public function up()
     {
         Schema::create('agents', function (Blueprint $table) {
-            $table->id('agent_id'); // ID unik untuk setiap agen
+            $table->id(); // ID unik untuk setiap agen
+            $table->string('uuid')->unique();
             $table->string('agent_name'); // Nama lengkap agen
             $table->text('address'); // Alamat lengkap agen
             $table->string('phone_number')->nullable(); // Kontak telepon agen

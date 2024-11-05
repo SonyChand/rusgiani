@@ -15,10 +15,7 @@
         <div class="col-lg-6">
             <div class="row flex-center h-100 g-0 px-4 px-sm-0">
                 <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3">
-                    <a href="{{ route('home.index') }}" alt="phoenix" width="58"
-                        style="position: absolute; top: 20px; right: 20px;"
-                        class="btn btn-sm btn-outline-primary">Beranda</a>
-                    <a class="d-flex flex-center text-decoration-none mb-4" href="{{ route('home.index') }}">
+                    <a class="d-flex flex-center text-decoration-none mb-4" href="#">
                         <div class="d-flex align-items-center fw-bolder fs-3 d-inline-block"><img
                                 src="{{ asset('assets') }}\assets\img\logos\logoDinkes.png" alt="phoenix"
                                 width="58" />

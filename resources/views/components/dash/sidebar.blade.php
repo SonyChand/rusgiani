@@ -95,61 +95,73 @@
                         </div>
                     @endcanany
 
-                    <div class="nav-item-wrapper"><a
-                            class="nav-link dropdown-indicator {{ request()->routeIs('tour*.*') ? '' : 'collapsed' }} label-1"
-                            href="#nv-tour" role="button" data-bs-toggle="collapse" aria-expanded="true"
-                            aria-controls="nv-tour">
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link dropdown-indicator {{ request()->is('management*.*') ? '' : 'collapsed' }} label-1"
+                            href="#nv-items" role="button" data-bs-toggle="collapse" aria-expanded="true"
+                            aria-controls="nv-items">
                             <div class="d-flex align-items-center">
                                 <div class="dropdown-indicator-icon-wrapper"><span
                                         class="fas fa-caret-right dropdown-indicator-icon"></span></div><span
                                     class="nav-link-icon"><span data-feather="package"></span></span><span
-                                    class="nav-link-text">Wisata <span
+                                    class="nav-link-text">Manajemen <span
                                         class="badge ms-2 badge badge-phoenix badge-phoenix-warning ">Demo</span></span>
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent {{ request()->routeIs('tour*.*') ? 'show' : '' }}"
-                                data-bs-parent="#navbarVerticalCollapse" id="nv-tour">
-                                <li class="collapsed-nav-item-title d-none">Wisata <span
+                            <ul class="nav collapse parent {{ request()->routeIs('*items.*') ? 'show' : '' }}"
+                                data-bs-parent="#navbarVerticalCollapse" id="nv-items">
+                                <li class="collapsed-nav-item-title d-none">Gas <span
                                         class="badge ms-2 badge badge-phoenix badge-phoenix-warning ">Demo</span>
                                 </li>
-                                <li class="nav-item"><a
-                                        class="nav-link dropdown-indicator {{ request()->routeIs('tour*.*') ? '' : 'collapsed' }}"
+                                <li class="nav-item">
+                                    <a class="nav-link dropdown-indicator {{ request()->routeIs('*items.*') ? '' : 'collapsed' }}"
                                         href="#nv-destinasi" data-bs-toggle="collapse" aria-expanded="true"
                                         aria-controls="nv-destinasi">
                                         <div class="d-flex align-items-center">
                                             <div class="dropdown-indicator-icon-wrapper"><span
                                                     class="fas fa-caret-right dropdown-indicator-icon"></span></div>
-                                            <span class="nav-link-text">Destinasi <span
+                                            <span class="nav-link-text">Gas <span
                                                     class="badge ms-2 badge badge-phoenix badge-phoenix-warning ">Demo</span></span>
                                         </div>
                                     </a>
                                     <!-- more inner pages-->
                                     <div class="parent-wrapper">
-                                        <ul class="nav collapse parent {{ request()->routeIs('tour*.*') ? 'show' : '' }}"
-                                            data-bs-parent="#tour" id="nv-destinasi">
+                                        <ul class="nav collapse parent {{ request()->routeIs('items*.*') ? 'show' : '' }}"
+                                            data-bs-parent="#items" id="nv-destinasi">
                                             <li class="nav-item">
-                                                <a class="nav-link {{ request()->routeIs('tour-destinations.*') ? 'active' : '' }}"
-                                                    href="{{ route('tour-destinations.index') }}">
+                                                <a class="nav-link {{ request()->routeIs('incoming-items.*') ? 'active' : '' }}"
+                                                    href="{{ route('incoming-items.index') }}">
                                                     <div class="d-flex align-items-center"><span
-                                                            class="nav-link-text">Destinasi</span>
+                                                            class="nav-link-text">Gas Masuk</span>
                                                     </div>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link {{ request()->routeIs('tour-packages.*') ? 'active' : '' }}"
-                                                    href="{{ route('tour-packages.index') }}">
+                                                <a class="nav-link {{ request()->routeIs('outgoing-items.*') ? 'active' : '' }}"
+                                                    href="{{ route('outgoing-items.index') }}">
                                                     <div class="d-flex align-items-center"><span
-                                                            class="nav-link-text">Paket</span>
+                                                            class="nav-link-text">Gas Keluar</span>
                                                     </div>
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('transactions.*') ? 'active' : '' }}"
+                                        href="{{ route('transactions.index') }}">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text">Keuangan</span></div>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
+
+
                     </div>
+
+
+
 
                     <!-- parent pages-->
                     <div class="nav-item-wrapper">

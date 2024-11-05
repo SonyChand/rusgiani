@@ -10,6 +10,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('financial_transactions', function (Blueprint $table) {
             $table->id(); // ID unik untuk setiap transaksi
+            $table->string('uuid')->unique();
             $table->date('transaction_date'); // Tanggal transaksi dilakukan
             $table->string('transaction_type'); // Jenis transaksi, misalnya, Penjualan, Pembelian, Pengeluaran Operasional
             $table->text('transaction_description'); // Keterangan singkat tentang transaksi

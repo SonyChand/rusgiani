@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item\IncomingItem;
+use App\Models\Item\OutgoingItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Tour\TourPackage;
@@ -28,9 +30,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $totalDestinations = TourDestination::count();
-        $totalPackages = TourPackage::count();
+        $totalBarangMasuk = IncomingItem::count();
+        $totalBarangKeluar = OutgoingItem::count();
 
-        return view('dashboard.index', compact('totalDestinations', 'totalPackages'));
+        return view('dashboard.index', compact('totalBarangMasuk', 'totalBarangKeluar'));
     }
 }

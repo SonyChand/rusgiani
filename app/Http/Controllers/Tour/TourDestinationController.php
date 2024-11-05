@@ -100,6 +100,8 @@ class TourDestinationController extends Controller
                 if (!file_exists($directory)) {
                     mkdir($directory, 0755, true);
                 }
+                // Add watermark
+
                 $img = $img->toWebp(100)->save(storage_path('app/public/' . $filePath));
 
                 $imagePaths[] = $filePath;
